@@ -1,0 +1,28 @@
+<div class="breadcrumb">
+  <div fxLayout="column" fxLayoutAlign="left">
+    <p class="display-4">Customers</p>
+    <p class="mat-h1 text-black-50">A list of objects in Firebase RealTime Database</p>
+  </div>
+</div>
+<div class="p-1">
+  <button mat-fab color="primary" (click)="onAddCustomer()">
+    <fa-icon [icon]="plus" size="lg"></fa-icon>
+  </button>
+  <div *ngIf="(customers?.length)" fxLayout="row fill" fxLayout.lt-md="column" fxLayoutGap="5px"
+    fxLayoutAlign="space-between top">
+    <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+      <app-customers-list [customers]="customers" [isLoading$]="isLoading$" (customerEdited)="onCustomerEdit($event)"
+        (customerDeleted)="onCustomerDelete($event)"></app-customers-list>
+    </div>
+    <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+      <app-customer-drag-and-drop [customers]="customers" [isLoading$]="isLoading$"></app-customer-drag-and-drop>
+    </div>
+  </div>
+  <div *ngIf="!(customers?.length)">
+    <mat-card>
+      <mat-card-content>
+        No customers found
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

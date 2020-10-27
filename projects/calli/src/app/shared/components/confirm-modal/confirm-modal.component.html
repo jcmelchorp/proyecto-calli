@@ -1,0 +1,11 @@
+<div mat-dialog-title>
+  Eliminar
+</div>
+<div mat-dialog-content>
+  <p>¿Está seguro de borrar este elemento?</p>
+  <p>Si continua perderá el elemento y no podrá recuperarlo</p>
+</div>
+<div mat-dialog-actions>
+  <button type="button" mat-rised-button class="btn btn-default" (click)="onNoClick()">Cancelar</button>
+  <button type="button" mat-rised-button class="btn btn-danger" (click)="onDelete()">Eliminar</button>
+</div>

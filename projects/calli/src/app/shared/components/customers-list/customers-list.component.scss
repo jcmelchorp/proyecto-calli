@@ -1,0 +1,22 @@
+.full-width-table {
+  width: 100%;
+}
+table {
+  .large-th {
+    min-width: 250px;
+    min-height: 10px;
+  }
+
+  .medium-th {
+    min-width: 120px;
+    min-height: 10px;
+  }
+
+  .small-th {
+    min-width: 80px;
+    min-height: 10px;
+  }
+}
+tr.mat-header-row, tr.mat-row {
+  min-height: 10px;
+}

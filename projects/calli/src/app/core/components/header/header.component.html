@@ -1,0 +1,54 @@
+<mat-toolbar [class.mat-elevation-z8]="true">
+  <mat-toolbar-row fxLayoutAlign="space-between center">
+    <div fxLayout="row">
+      <button mat-icon-button [routerLink]="['/']">
+        <fa-icon [icon]="home" size="lg"></fa-icon>
+      </button>
+      <!--buttons disappear on Xs devices-->
+      <div *ngIf="!deviceXs && isLoggedIn && !isLoading">
+        <button mat-button [routerLink]="['/courses/google']">Courses</button>
+        <button mat-button [routerLink]="['/customers']">Customers</button>
+        <button mat-button [routerLink]="['/quizzes/dashboard']">Quizzes</button>
+      </div>
+      <div *ngIf="!deviceXs && isLoggedIn && !isLoading">
+        <fa-icon [icon]="waffle"></fa-icon>>
+      </div>
+      <!---->
+    </div>
+    <div fxLayout="row">
+      <button *ngIf="isLoggedIn && !isLoading" mat-icon-button [matMenuTriggerFor]="useractions"
+        aria-label="Example icon-button with a menu" class="mx-1">
+        <img class="img-thumbnail rounded-circle"
+          src="{{ (user.photoUrl)  ? user.photoUrl : '/assets/images/dummy-user.png'}}" />
+      </button>
+      <button *ngIf="!isLoggedIn && !isLoading" mat-icon-button [matMenuTriggerFor]="users"
+        aria-label="Example icon-button with a menu" class="mx-1">
+        <fa-icon [icon]="userIcon" size="lg"></fa-icon>
+      </button>
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="mx-1">
+        <fa-icon [icon]="dots" size="lg"></fa-icon>
+      </button>
+    </div>
+  </mat-toolbar-row>
+</mat-toolbar>
+<!-- Menu Items -->
+<mat-menu #users="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item [routerLink]="['login']">Entrar</button>
+  <button mat-menu-item [routerLink]="['register']">Registro</button>
+</mat-menu>
+<!-- -->
+<!-- Menu Items -->
+<mat-menu #menu="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item [routerLink]="['under-construction']">Ayuda</button>
+  <button mat-menu-item [routerLink]="['about']">Acerca de...</button>
+</mat-menu>
+<!-- -->
+<!-- Menu Items -->
+<mat-menu #useractions="matMenu" fxLayoutAlign="end">
+  <button mat-menu-item [routerLink]="['profile']">Mi cuenta</button>
+  <button *ngIf="isAdmin" mat-menu-item [routerLink]="['admin']">
+    Administración
+  </button>
+  <button mat-menu-item (click)="onLogout()">Cerrar sesión</button>
+</mat-menu>
+<!-- -->

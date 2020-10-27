@@ -1,0 +1,56 @@
+<footer class="bg-dark text-center text-light pb-1">
+  <carousel *ngIf="!isLoggedIn" [interval]="2000">
+    <slide>
+      <div class="text-center py-5 bg-dark text-white">
+        <h2>Gráficas</h2>
+        <div class="lead">
+          <h3>
+            Análisis y monitoreo de las cifras de contagio
+          </h3>
+          <p>
+            Datos locales, nacionales e internacionales
+          </p>
+        </div>
+      </div>
+    </slide>
+    <slide>
+      <div class="text-center py-5 bg-dark text-white">
+        <h2>Aspectos de impacto</h2>
+        <div class="lead">
+          <h3>Las diversas áreas de la vida donde afecta la pandemia</h3>
+          <p>Salud, familia, trabajo, escuela, recreación, economía, política</p>
+        </div>
+      </div>
+    </slide>
+    <slide>
+      <div class="text-center py-5 bg-dark text-white">
+        <h2>Modelos epidemiológicos</h2>
+        <div class="lead">
+          <h3>Modelo SIR</h3>
+          <p>
+            Herramienta interactiva básica para entender la evolución de la
+            pandemia
+          </p>
+        </div>
+      </div>
+    </slide>
+  </carousel>
+  <div class="pl-5 pr-5 mt-3" fxLayout="row" fxLayoutAlign="space-between center" *ngIf="!deviceXs">
+    <div>
+      <p>2020 &copy; Julio César Melchor Pinto<a mat-button [routerLink]="['/privacy-policy']">Politicas de
+          Privacidad</a></p>
+    </div>
+    <div>
+      <p>Iconos de Social</p>
+    </div>
+  </div>
+  <div class="mt-3" fxLayout="column" fxLayoutAlign="center center" *ngIf="deviceXs">
+    <div>
+      <p>2020 &copy; Julio César Melchor Pinto<a mat-button [routerLink]="['/privacy-policy']">Politicas de
+          Privacidad</a></p>
+    </div>
+    <div>
+      <p>Iconos de Social</p>
+    </div>
+  </div>
+</footer>

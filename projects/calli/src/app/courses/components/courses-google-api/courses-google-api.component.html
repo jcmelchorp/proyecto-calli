@@ -1,0 +1,14 @@
+<div class="breadcrumb">
+  <div fxLayout="column" fxLayoutAlign="left">
+    <p class="display-4">Google Classroom</p>
+    <p class="mat-h1 text-black-50">
+    </p>
+  </div>
+</div>
+<div>
+  <div class="p-5">
+    <calli-table *ngIf="courses$|async" [courses]="courses$|async" (courseDeleted)="onCourseDelete($event)"
+      (courseEdited)="onCourseEdit($event)"></calli-table>
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+.course {
+  width: 80%;
+  margin: 1rem;
+}
+
+@media (min-width: 768px) {
+  .course {
+    width: calc(50% - 2rem);
+  }
+
+  .courses-list {
+    justify-content: normal;
+  }
+}
+
+@media (min-width: 992px) {
+  .course {
+    width: calc(33.3333% - 2rem);
+  }
+}
+
+@media (min-width: 1200px) {
+  .course {
+    width: calc(25% - 3rem);
+  }
+}

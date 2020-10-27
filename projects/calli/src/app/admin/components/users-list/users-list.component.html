@@ -1,0 +1,7 @@
+<div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="flex-start">
+  <div class="pb-3" *ngFor="let user of users; trackBy: trackByFn" fxFlex="0 1 calc(33% - 10px)"
+    fxFlex.lt-lg="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+    <calli-user [user]="user" (userSelected)="onUserSelected($event)" (addAdmin)="onAddAdmin($event)"
+      (removeAdmin)="onRemoveAdmin($event)"></calli-user>
+  </div>
+</div>

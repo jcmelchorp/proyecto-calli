@@ -1,0 +1,18 @@
+<mat-toolbar>
+  <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenavtwo.toggle()"
+    [ngClass]="{ hidden: !deviceSm }">
+    <fa-icon aria-label="Side nav toggle icon" [icon]="menu" size="lg"></fa-icon>
+  </button>
+  <span>Google APIs</span>
+</mat-toolbar>
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav class="sidenav" #sidenavtwo [opened]="!deviceSm" role="navigation" [mode]="!deviceSm ? 'side' : 'over'">
+    <mat-nav-list>
+      <a mat-list-item [routerLink]="['google']" (click)="sidenavtwo.close()">Classroom API</a>
+      <a mat-list-item [routerLink]="['firebase']" (click)="sidenavtwo.close()">Firebase RealTime Db</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

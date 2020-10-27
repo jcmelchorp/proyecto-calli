@@ -1,0 +1,28 @@
+<div class="breadcrumb">
+  <div fxLayout="column" fxLayoutAlign="left">
+    <p class="display-4">Administraci&oacute;n</p>
+    <p class="mat-h1 text-black-50">
+      Cambia la configuraci&oacute;n de todos los usuarios de la
+      aplicaci&oacute;n
+    </p>
+  </div>
+</div>
+
+
+<div *ngIf="usersListLoading$ | async" class="d-flex justify-content-center align-items-center"
+  fxLayoutAlign="center center">
+  <mat-spinner></mat-spinner>
+</div>
+
+<div class="p-5" *ngIf="!(usersListLoading$ | async)">
+
+  <app-users-list *ngIf="!selectedUser" [users]="users$ | async" (userSelected)="onUserSelect($event)"
+    (addAdmin)="addAdminPrivileges($event)" (removeAdmin)="removeAdminPrivileges($event)"></app-users-list>
+
+  <app-user-detail *ngIf="selectedUser" [user]="selectedUser$ | async" [customers]="userCustomers$ | async"
+    [userCustomersLoading]="userCustomersLoading$ | async" [userCoursesLoading]="userCoursesLoading$ | async"
+    (detailsClosed)="onDetailsClose()" (coursesLoad)="onCoursesLoad()" (customersLoad)="onCustomersLoad()"
+    (addAdmin)="addAdminPrivileges($event)" (customerDeleted)="onCustomerDelete($event)"
+    (courseDeleted)="onCourseDelete($event)" (removeAdmin)="removeAdminPrivileges($event)"></app-user-detail>
+
+</div>

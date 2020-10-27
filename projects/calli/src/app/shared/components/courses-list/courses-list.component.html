@@ -1,0 +1,8 @@
+<div class="p-5">
+  <mat-list>
+    <div *ngFor="let course of courses; trackBy: trackByFunction">
+      <calli-course [course]="course" [editable]="editable" (deleted)="onCourseDelete($event)"
+        (edited)="onCourseEdit($event)"></calli-course>
+    </div>
+  </mat-list>
+</div>

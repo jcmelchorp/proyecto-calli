@@ -1,0 +1,36 @@
+<h2 mat-dialog-title>{{ heading }}</h2>
+<mat-dialog-content>
+  <div>
+    <button type="button" class="close pull-right" aria-label="Close" (click)="dialogService.closeAll()">
+      <span aria-hidden="true">
+        <fa-icon [icon]="this.close"></fa-icon>
+      </span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <form #projectForm="ngForm">
+      <div class="md-form">
+        <label for="name">Title</label>
+        <input type="text" class="form-control" name="name" [(ngModel)]="course.name" matInput #name="ngModel" required>
+        <mat-error *ngIf="name && name.invalid && (name.dirty || name.touched)">Name required</mat-error>
+      </div>
+
+      <div class="md-form">
+        <label for="description">Description</label>
+        <textarea type="text" id="description" class="md-textarea form-control" name="description"
+          [(ngModel)]="course.description" matInput #description="ngModel" required></textarea>
+        <mat-error *ngIf="description && description.invalid && (description.dirty || description.touched)">Description
+          required</mat-error>
+      </div>
+
+      <div class="md-form">
+        <label for="section">Section</label>
+        <input type="text" id="section" class="form-control" name="section" [(ngModel)]="course.section" matInput>
+      </div>
+    </form>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button type="button" mat-button aria-label="Close" (click)="dialogService.closeAll()">Close</button>
+  <button type="submit" mat-button (click)="onSave()">Save</button>
+</mat-dialog-actions>

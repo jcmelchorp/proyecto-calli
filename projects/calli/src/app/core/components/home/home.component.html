@@ -1,0 +1,7 @@
+<div *ngIf="isLoading$ | async" class="d-flex justify-content-center align-items-center">
+  <mat-progress-spinner mode="indeterminate">
+  </mat-progress-spinner>
+  <span>Cargando...</span>
+</div>
+<app-wellcome *ngIf="!(isLoggedIn$ | async) && !(isLoading$ | async)"></app-wellcome>
+<app-dashboard *ngIf="(isLoggedIn$ | async) && !(isLoading$ | async)"></app-dashboard>

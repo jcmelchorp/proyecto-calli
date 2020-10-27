@@ -1,0 +1,30 @@
+<div fxLayout="row" fxLayoutAlign="center">
+  <h3 mat-dialog-title>{{ heading }}</h3>
+</div>
+<form [formGroup]="customerForm" (ngSubmit)="onSave()" novalidate>
+  <div mat-dialog-content>
+    <mat-form-field class="d-block" appearance="outline" hidden>
+      <mat-label>Id</mat-label>
+      <input type="text" formControlName="id" matInput>
+      <mat-error *ngIf="customerForm.controls['id'].hasError('required')">id is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="d-block" appearance="outline">
+      <mat-label>Name</mat-label>
+      <input type="text" formControlName="name" matInput required>
+      <mat-error *ngIf="customerForm.controls['description'].hasError('required')">Name is required</mat-error>
+    </mat-form-field>
+    <mat-form-field class="d-block" appearance="outline">
+      <mat-label>Description</mat-label>
+      <textarea matInput type="text" formControlName="description" required></textarea>
+      <mat-error *ngIf="customerForm.controls['description'].hasError('required')">
+        Description</mat-error>
+    </mat-form-field>
+
+  </div>
+
+  <div mat-dialog-actions>
+    <button type="reset" mat-button aria-label="Close" matDialogClose>Close</button>
+    <button type="submit" mat-raised-button color="warn" [disabled]="customerForm.invalid" [mat-dialog-close]="data"
+      cdkFocusInitial>Save</button>
+  </div>
+</form>

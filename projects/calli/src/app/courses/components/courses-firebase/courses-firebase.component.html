@@ -1,0 +1,20 @@
+<div class="breadcrumb">
+  <div fxLayout="column" fxLayoutAlign="left">
+    <p class="display-4">Google Classroom</p>
+    <p class="mat-h1 text-black-50">
+    </p>
+  </div>
+</div>
+<calli-loader-ui [isLoading$]="isLoading$"></calli-loader-ui>
+
+<div *ngIf="!(isLoading$ | async)" class="px-3" fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px"
+  fxLayoutAlign="flex-start">
+  <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+    <calli-course-table [courses]="courses$ | async" (courseDeleted)="onCourseDelete($event)"
+      (courseEdited)="onCourseEdit($event)"></calli-course-table>
+  </div>
+  <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+    <calli-courses-list [courses]="courses$ | async" (courseDeleted)="onCourseDelete($event)"
+      (courseEdited)="onCourseEdit($event)"></calli-courses-list>
+  </div>
+</div>
