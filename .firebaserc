@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "proyecto-calli": {
+      "hosting": {
+        "calli": [
+          "proyecto-calli"
+        ]
+      }
+    }
+  }
+}
