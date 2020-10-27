@@ -9,7 +9,6 @@ import { Store } from '@ngrx/store';
 import { Subscription, Observable } from 'rxjs';
 import { take, map } from 'rxjs/operators';
 
-import { AppState } from 'src/app/state/app.state';
 
 import { Customer } from './../../models/customer.model';
 import { CustomersService } from './../../services/customers.service';
@@ -17,10 +16,11 @@ import * as fromCustomers from './../../store/customers.actions';
 import { getCustomers, getIsLoading } from '../../store/customers.selectors';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 import { CustomersModalComponent } from '../../../shared/components/customers-modal/customers-modal.component';
+import { AppState } from '../../../reducers';
 
 
 @Component({
-  selector: 'app-customers',
+  selector: 'calli-customers',
   templateUrl: './customers.component.html',
   styleUrls: ['./customers.component.scss']
 })

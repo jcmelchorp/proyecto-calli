@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
 import { Customer } from '../../models/customer.model';
 
 @Component({
-  selector: 'app-customer-drag-and-drop',
+  selector: 'calli-customer-drag-and-drop',
   templateUrl: './customer-drag-and-drop.component.html',
   styleUrls: ['./customer-drag-and-drop.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush

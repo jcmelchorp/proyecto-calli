@@ -17,6 +17,7 @@ import { User } from '../../../auth/models/user.model';
 import { map, delay, take } from 'rxjs/operators';
 import { Course } from '../../../courses/models/course.model';
 import { Customer } from '../../../customers/models/customer.model';
+import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
 
 
 @Component({

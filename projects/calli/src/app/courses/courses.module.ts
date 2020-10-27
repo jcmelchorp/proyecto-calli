@@ -1,3 +1,4 @@
+import { TableComponent } from './components/table/table.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -32,6 +33,7 @@ import { CoursesShellComponent } from './containers/courses-shell/courses-shell.
     CoursesShellComponent,
     CoursesGoogleApiComponent,
     CoursesComponent,
+    TableComponent
   ],
   imports: [
     CommonModule,
@@ -43,7 +45,7 @@ import { CoursesShellComponent } from './containers/courses-shell/courses-shell.
     StoreModule.forFeature('courses', fromCourse.courseReducer),
     EffectsModule.forFeature([CourseEffect]),
   ],
-  exports: [CoursesFirebaseComponent],
+  exports: [],
   providers: [CourseDbService],
   entryComponents: [ConfirmModalComponent],
 })

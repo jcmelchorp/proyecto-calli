@@ -28,8 +28,7 @@
               "projects/calli/src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/scss/bootstrap.scss",
               "projects/calli/src/styles.scss"
             ],
             "scripts": []
@@ -94,8 +93,7 @@
               "projects/calli/src/assets"
             ],
             "styles": [
-              "./node_modules/bootstrap/dist/css/bootstrap.min.css",
-              "./node_modules/ngx-bootstrap/datepicker/bs-datepicker.css",
+              "./node_modules/bootstrap/scss/bootstrap.scss",
               "projects/calli/src/styles.scss"
             ],
             "scripts": []
@@ -133,8 +131,35 @@
       }
     }
   },
-  "cli": {
-    "analytics": "d77d4fb8-c051-4e4a-bd8e-2b7be68adc00"
+  "defaultProject": "calli",
+  "schematics": {
+    "@ngrx/schematics":{
+
+    },
+    "@schematics/angular:class": {
+      "skipTests": true
+    },
+    "@schematics/angular:directive": {
+    },
+    "@schematics/angular:module": {
+    },
+    "@schematics/angular:service": {
+      "skipTests": true,
+      "flat": false
+    },
+    "@schematics/angular:pipe": {},
+    "@schematics/angular:component": {
+      "inlineTemplate": false,
+      "inlineStyle": false,
+      "prefix": "calli",
+      "skipTests": true,
+      "style": "scss"
+    }
   },
-  "defaultProject": "calli"
+  "cli": {
+    "analytics": "d77d4fb8-c051-4e4a-bd8e-2b7be68adc00",
+    "defaultCollection": "@schematics/angular",
+    "packageManager": "yarn",
+    "warnings": { "versionMismatch": true}
+  }
 }

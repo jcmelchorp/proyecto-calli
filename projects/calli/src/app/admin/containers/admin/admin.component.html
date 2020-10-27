@@ -16,13 +16,13 @@
 
 <div class="p-5" *ngIf="!(usersListLoading$ | async)">
 
-  <app-users-list *ngIf="!selectedUser" [users]="users$ | async" (userSelected)="onUserSelect($event)"
-    (addAdmin)="addAdminPrivileges($event)" (removeAdmin)="removeAdminPrivileges($event)"></app-users-list>
+  <calli-users-list *ngIf="!selectedUser" [users]="users$ | async" (userSelected)="onUserSelect($event)"
+    (addAdmin)="addAdminPrivileges($event)" (removeAdmin)="removeAdminPrivileges($event)"></calli-users-list>
 
-  <app-user-detail *ngIf="selectedUser" [user]="selectedUser$ | async" [customers]="userCustomers$ | async"
+  <calli-user-detail *ngIf="selectedUser" [user]="selectedUser$ | async" [customers]="userCustomers$ | async"
     [userCustomersLoading]="userCustomersLoading$ | async" [userCoursesLoading]="userCoursesLoading$ | async"
     (detailsClosed)="onDetailsClose()" (coursesLoad)="onCoursesLoad()" (customersLoad)="onCustomersLoad()"
     (addAdmin)="addAdminPrivileges($event)" (customerDeleted)="onCustomerDelete($event)"
-    (courseDeleted)="onCourseDelete($event)" (removeAdmin)="removeAdminPrivileges($event)"></app-user-detail>
+    (courseDeleted)="onCourseDelete($event)" (removeAdmin)="removeAdminPrivileges($event)"></calli-user-detail>
 
 </div>
