@@ -1,4 +1,4 @@
-<mat-toolbar [class.mat-elevation-z8]="true">
+<mat-toolbar>
   <mat-toolbar-row fxLayoutAlign="space-between center">
     <div fxLayout="row">
       <button mat-icon-button [routerLink]="['/']">
@@ -10,20 +10,20 @@
         <button mat-button [routerLink]="['/customers']">Customers</button>
         <button mat-button [routerLink]="['/quizzes/dashboard']">Quizzes</button>
       </div>
-      <div *ngIf="!deviceXs && isLoggedIn && !isLoading">
-        <fa-icon [icon]="waffle"></fa-icon>>
-      </div>
-      <!---->
     </div>
     <div fxLayout="row">
       <button *ngIf="isLoggedIn && !isLoading" mat-icon-button [matMenuTriggerFor]="useractions"
         aria-label="Example icon-button with a menu" class="mx-1">
         <img class="img-thumbnail rounded-circle"
-          src="{{ (user.photoUrl)  ? user.photoUrl : '/assets/images/dummy-user.png'}}" />
+          src="{{ (user.photoURL)  ? user.photoURL : '/assets/images/dummy-user.png'}}" />
       </button>
       <button *ngIf="!isLoggedIn && !isLoading" mat-icon-button [matMenuTriggerFor]="users"
         aria-label="Example icon-button with a menu" class="mx-1">
         <fa-icon [icon]="userIcon" size="lg"></fa-icon>
+      </button>
+      <button *ngIf="deviceXs && isLoggedIn && !isLoading" mat-icon-button [matMenuTriggerFor]="appsMenu"
+        aria-label="Example icon-button with a menu">
+        <mat-icon>apps</mat-icon>
       </button>
       <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Example icon-button with a menu" class="mx-1">
         <fa-icon [icon]="dots" size="lg"></fa-icon>
@@ -50,5 +50,12 @@
     Administración
   </button>
   <button mat-menu-item (click)="onLogout()">Cerrar sesión</button>
+</mat-menu>
+<!-- -->
+<!-- Menu Items -->
+<mat-menu #appsMenu="matMenu" fxLayoutAlign="end">
+  <a mat-menu-item [routerLink]="['/courses/google']">Courses</a>
+  <a mat-menu-item [routerLink]="['/customers']">Customers</a>
+  <a mat-menu-item [routerLink]="['/quizzes/dashboard']">Quizzes</a>
 </mat-menu>
 <!-- -->

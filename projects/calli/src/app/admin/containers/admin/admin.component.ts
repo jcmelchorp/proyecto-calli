@@ -1,7 +1,12 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+
 import { Store, select } from '@ngrx/store';
-import * as fromAdmin from '../../store/admin.actions';
+
 import { Observable } from 'rxjs';
+import { map, delay, take } from 'rxjs/operators';
+
+import * as fromAdmin from '../../store/admin.actions';
 import {
   getUsersList,
   getUserCourses,
@@ -11,10 +16,8 @@ import {
   getUserCustomers,
   getUserCustomersLoading,
 } from '../../store/admin.selectors';
-import { MatDialog } from '@angular/material/dialog';
 import { AppState } from '../../../reducers/index';
 import { User } from '../../../auth/models/user.model';
-import { map, delay, take } from 'rxjs/operators';
 import { Course } from '../../../courses/models/course.model';
 import { Customer } from '../../../customers/models/customer.model';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
@@ -100,7 +103,6 @@ export class AdminComponent implements OnInit {
       ConfirmModalComponent,
       { width: '400px', data: {} }
     );
-
     dialogRef.componentInstance.confirmation
       .pipe(take(1))
       .subscribe((confirmation: boolean) => {
@@ -120,7 +122,6 @@ export class AdminComponent implements OnInit {
       ConfirmModalComponent,
       { width: '400px', data: {} }
     );
-
     dialogRef.componentInstance.confirmation
       .pipe(take(1))
       .subscribe((confirmation: boolean) => {

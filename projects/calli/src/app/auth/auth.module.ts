@@ -1,24 +1,41 @@
-import { NgModule } from '@angular/core';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import * as fromAuth from './store/auth.reducer';
-import { AuthRoutingModule } from './auth-routing.module';
-import { LoginComponent } from './components/login/login.component';
-import { RegisterComponent } from './components/register/register.component';
-import { AuthService } from './services/auth.service';
+import { FlexLayoutModule } from '@angular/flex-layout';
+
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
+
+import { MaterialModule } from './../material/material.module';
+
+import { AuthGuard } from './guards/auth.guard';
+import { GoogleApiService } from './services/google-api.service';
 import { AuthEffects } from './store/auth.effects';
+import * as fromAuth from './store/auth.reducer';
+import { authInitialState } from './store/auth.state';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 
 
 @NgModule({
   declarations: [RegisterComponent, LoginComponent],
-  exports: [RegisterComponent],
+  providers: [GoogleApiService],
+  exports: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
-    AuthRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
+    RouterModule,
+    MaterialModule,
+    FlexLayoutModule,
+    FontAwesomeModule,
     StoreModule.forFeature('auth', fromAuth.authReducer),
     EffectsModule.forFeature([AuthEffects]),
   ],
-  providers: [AuthService]
+
 })
-export class AuthModule { }
+export class AuthModule {
+}

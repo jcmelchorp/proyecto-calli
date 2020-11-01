@@ -12,13 +12,12 @@ import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AuthService } from '../../services/auth.service';
+import { AppState } from '../../../reducers';
 import * as actions from './../../store/auth.actions';
 import { getError } from '../../store/auth.selectors';
-import { AppState } from '../../../state/app.state';
 
 @Component({
-  selector: 'app-login',
+  selector: 'calli-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
@@ -30,11 +29,9 @@ export class LoginComponent implements OnInit {
   google = faGoogle;
   error$: Observable<string | null> | undefined;
   constructor(
-    public authService: AuthService,
     private store: Store<AppState>) { }
 
   ngOnInit(): void {
-    this.authService.isTryingToLog$ = of(false);
     this.loginForm = new FormGroup({
       email: new FormControl('', [Validators.required, Validators.email]),
       password: new FormControl('', Validators.required),
@@ -79,7 +76,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onSocialLogin(authProvider: string): void {
-    this.store.dispatch(new actions.SocialLogin({ authProvider }));
+  onGoogleLogin(): void {
+    this.store.dispatch(new actions.SocialLogin());
   }
 }

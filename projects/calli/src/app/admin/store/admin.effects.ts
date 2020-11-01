@@ -1,12 +1,15 @@
-import { Course } from './../../courses/models/course.model';
 import { Injectable } from '@angular/core';
+
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import * as fromAdmin from './../store/admin.actions';
 import { switchMap, map, catchError, mergeMap } from 'rxjs/operators';
-import { AdminService } from '../services/admin.service';
 import { of } from 'rxjs';
+
+import { AdminService } from '../services/admin.service';
+import * as fromAdmin from './../store/admin.actions';
+import { Course } from './../../courses/models/course.model';
 import { Customer } from '../../customers/models/customer.model';
+
 @Injectable()
 export class AdminEffects {
   constructor(private actions$: Actions, private adminService: AdminService) { }

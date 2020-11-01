@@ -1,1 +1,15 @@
-<p>profile works!</p>
+<div class="px-5 py-3">
+  <div fxLayout="column" fxLayoutAlign="left">
+    <p class="display-4">Mi cuenta</p>
+    <p class="mat-h1 text-black-50">Actualiza tu información personal</p>
+  </div>
+</div>
+
+<div class="px-5 py-3">
+  <div class="px-5 mt-3">
+    <calli-profile-user [user]="user$ | async" (logout)="logoutUser($event)"></calli-profile-user>
+  </div>
+  <div class="mt-3">
+    <calli-main-profile [user]="user$ | async" (profileUpdate)="updateProfile($event)"></calli-main-profile>
+  </div>
+</div>

@@ -6,7 +6,9 @@ import {
   Output,
   ChangeDetectionStrategy,
 } from '@angular/core';
+
 import { faArrowLeft, faCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { User } from '../../../auth/models/user.model';
 import { Course } from '../../../courses/models/course.model';
 import { Customer } from '../../../customers/models/customer.model';
@@ -42,7 +44,7 @@ export class UserDetailComponent implements OnInit {
     this.detailsClosed.emit();
   }
 
-  loadCustomers() {
+  loadCustomers(): void {
     this.customersLoad.emit();
   }
 

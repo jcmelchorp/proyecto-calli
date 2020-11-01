@@ -1,20 +1,19 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { AuthGuard } from './auth/guards/auth.guard';
+import { Routes, RouterModule, PreloadAllModules } from '@angular/router';
+
 import { AdminGuard } from './admin/guard/admin.guard';
-import { MainComponent } from './core/components/main/main.component';
-import { HomeComponent } from './core/components/home/home.component';
+import { AuthGuard } from './auth/guards/auth.guard';
 import { LoginComponent } from './auth/components/login/login.component';
 import { RegisterComponent } from './auth/components/register/register.component';
 import { AboutComponent } from './core/components/about/about.component';
+import { HomeComponent } from './core/components/home/home.component';
+import { MainComponent } from './core/components/main/main.component';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { PrivacyPolicyComponent } from './core/components/privacy-policy/privacy-policy.component';
 import { UnderConstructionComponent } from './core/components/under-construction/under-construction.component';
 
 const routes: Routes = [{
-  path: '',
-  component: HomeComponent,
-  children: [
+  path: '', component: HomeComponent, children: [
     { path: '', component: MainComponent },
     {
       path: 'admin',
@@ -37,13 +36,16 @@ const routes: Routes = [{
   ],
 },
 { path: 'login', component: LoginComponent },
+{ path: 'register', component: RegisterComponent },
 { path: 'about', component: AboutComponent },
 { path: 'privacy-policy', component: PrivacyPolicyComponent },
 { path: 'under-construction', component: UnderConstructionComponent },
-{ path: 'register', component: RegisterComponent },
 { path: '**', component: NotFoundComponent },];
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes, {
+    initialNavigation: 'enabled', preloadingStrategy: PreloadAllModules,
+    useHash: false,
+  })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site":"proyecto-calli",
     "public": "dist/calli",
     "ignore": [
       "firebase.json",

@@ -1,14 +1,17 @@
-import { AppState } from '../../../state/app.state';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+
 import { Store, select } from '@ngrx/store';
-import * as actions from './../../store/auth.actions';
-import { getError } from '../../store/auth.selectors';
+
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { AppState } from '../../../reducers';
+import * as actions from './../../store/auth.actions';
+import { getError } from '../../store/auth.selectors';
+
 @Component({
-  selector: 'app-register',
+  selector: 'calli-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss'],
 })
@@ -16,7 +19,7 @@ export class RegisterComponent implements OnInit {
   registerForm: FormGroup | undefined;
   hide = true;
   error$: Observable<string | null> | undefined;
-  constructor(private store: Store<AppState>) {}
+  constructor(private store: Store<AppState>) { }
 
   ngOnInit(): void {
     this.registerForm = new FormGroup({

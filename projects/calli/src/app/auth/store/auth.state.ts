@@ -12,6 +12,6 @@ export const authInitialState: AuthState = {
   user: null,
   isAdmin: false,
   isLoggedIn: false,
-  isLoading: true,
+  isLoading: true,  //
   error: null
 };

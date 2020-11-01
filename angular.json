@@ -17,6 +17,15 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
+            "allowedCommonJsDependencies": [
+              "@firebase/app",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/auth",
+              "@angular/fire/firestore",
+              "firebase/app",
+              "md5"
+            ],
             "outputPath": "dist/calli",
             "index": "projects/calli/src/index.html",
             "main": "projects/calli/src/main.ts",
@@ -25,7 +34,8 @@
             "aot": true,
             "assets": [
               "projects/calli/src/favicon.ico",
-              "projects/calli/src/assets"
+              "projects/calli/src/assets",
+              "projects/calli/src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
@@ -60,7 +70,9 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "serviceWorker": true,
+              "ngswConfigPath": "projects/calli/ngsw-config.json"
             }
           }
         },
@@ -90,7 +102,8 @@
             "karmaConfig": "projects/calli/karma.conf.js",
             "assets": [
               "projects/calli/src/favicon.ico",
-              "projects/calli/src/assets"
+              "projects/calli/src/assets",
+              "projects/calli/src/manifest.webmanifest"
             ],
             "styles": [
               "./node_modules/bootstrap/scss/bootstrap.scss",
@@ -133,8 +146,8 @@
   },
   "defaultProject": "calli",
   "schematics": {
-    "@ngrx/schematics":{
 
+    "@ngrx/schematics":{
     },
     "@schematics/angular:class": {
       "skipTests": true
@@ -159,7 +172,7 @@
   "cli": {
     "analytics": "d77d4fb8-c051-4e4a-bd8e-2b7be68adc00",
     "defaultCollection": "@schematics/angular",
-    "packageManager": "yarn",
+    "packageManager": "npm",
     "warnings": { "versionMismatch": true}
   }
 }

@@ -1,12 +1,15 @@
 import { NgModule, Optional, SkipSelf } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ShellComponent } from './containers/shell/shell.component';
-import { LayoutModule } from '@angular/cdk/layout';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { CarouselModule } from 'ngx-bootstrap/carousel';
+
 import { MaterialModule } from '../material/material.module';
+
 import { AboutComponent } from './components/about/about.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -37,11 +40,10 @@ import { WellcomeComponent } from './components/wellcome/wellcome.component';
     RouterModule,
     ReactiveFormsModule,
     FormsModule,
+    CarouselModule,
     MaterialModule,
     FlexLayoutModule,
     FontAwesomeModule,
-    LayoutModule,
-
   ],
   exports: [
     AboutComponent,
@@ -56,10 +58,4 @@ import { WellcomeComponent } from './components/wellcome/wellcome.component';
     UnderConstructionComponent,
   ],
 })
-export class CoreModule {
-  constructor(@Optional() @SkipSelf() core: CoreModule) {
-    if (core) {
-      throw new Error('You should import core module only in the root module')
-    }
-  }
-}
+export class CoreModule { }

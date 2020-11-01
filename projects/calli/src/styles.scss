@@ -1,6 +1,47 @@
 @import "assets/themes/custom-theme.scss";
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-mat-toolbar {
-  height: 50px !important;
+html,
+body {
+  height: 100%;
 }
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+calli-root {
+  min-height: 100%;
+  overflow: hidden;
+  display: block;
+  position: relative;
+  background-color: #ffffff;
+}
+
+
+/*This is important for the toolbar shadow*/
+calli-header {
+  position: relative;
+  top: 0;
+  width: 100%;
+}
+
+
+calli-welcome {
+  background-color: white;
+}
+
+/*  footer {
+  position: relative;
+  bottom: 0;
+  width: 100%;
+  height: inherit;
+} */
+footer-absolute {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+.full-page-container {
+  height: calc(100vh - 114px);
+}
+
+

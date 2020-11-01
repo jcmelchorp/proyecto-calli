@@ -11,11 +11,11 @@
   <div *ngIf="(customers?.length)" fxLayout="row fill" fxLayout.lt-md="column" fxLayoutGap="5px"
     fxLayoutAlign="space-between top">
     <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
-      <app-customers-list [customers]="customers" [isLoading$]="isLoading$" (customerEdited)="onCustomerEdit($event)"
-        (customerDeleted)="onCustomerDelete($event)"></app-customers-list>
+      <calli-customers-list [customers]="customers" [isLoading$]="isLoading$" (customerEdited)="onCustomerEdit($event)"
+        (customerDeleted)="onCustomerDelete($event)"></calli-customers-list>
     </div>
     <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
-      <app-customer-drag-and-drop [customers]="customers" [isLoading$]="isLoading$"></app-customer-drag-and-drop>
+      <calli-customer-drag-and-drop [customers]="customers" [isLoading$]="isLoading$"></calli-customer-drag-and-drop>
     </div>
   </div>
   <div *ngIf="!(customers?.length)">

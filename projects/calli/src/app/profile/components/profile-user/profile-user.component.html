@@ -1,0 +1,21 @@
+<mat-card class="bg-light">
+  <mat-card-content>
+    <div class="text-center">
+      <div class="avatar" style="margin-top: -60px">
+        <img *ngIf="user.photoURL" src="{{ user.photoURL }}" height="96" width="96" class="rounded-circle"
+          alt="avatar image">
+      </div>
+
+      <h3 *ngIf="user.displayName" class="mt-4">{{ user.displayName }}</h3>
+      <h3 *ngIf="!user.displayName" class="mt-4">Usuario anónimo</h3>
+      <h2>Roles del usuario:
+        <div *ngIf="user.isAdmin">
+          <p class="badge badge-danger">Administrador</p>
+        </div>
+
+      </h2>
+      <a mat-button color="accent" (click)="onLogout()">Cerrar sesión</a>
+      <a mat-button color="warn">Editar</a>
+    </div>
+  </mat-card-content>
+</mat-card>

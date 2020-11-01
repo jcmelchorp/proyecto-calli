@@ -2,13 +2,14 @@ import {
   Action,
   ActionReducer,
   ActionReducerMap,
-  createFeatureSelector,
-  createSelector,
   MetaReducer
 } from '@ngrx/store';
-import { environment } from '../../environments/environment';
 
-export const storeFeatureKey = 'store';
+import * as fromAdmin from '../admin/store/admin.reducer';
+import { AdminState } from '../admin/store/admin.state';
+import * as fromAuth from '../auth/store/auth.reducer';
+import { AuthState } from '../auth/store/auth.state';
+
 
 export interface AppState {
   auth: AuthState;
@@ -32,4 +33,4 @@ export function clearState(
 }
 
 
-export const metaReducers: MetaReducer<AppState>[] = !environment.production ? [] : [];
+export const metaReducers: MetaReducer<AppState>[] = [clearState];

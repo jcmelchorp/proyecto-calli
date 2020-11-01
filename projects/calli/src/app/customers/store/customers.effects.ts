@@ -9,7 +9,7 @@ import * as fromCustomers from './../store/customers.actions';
 import { of } from 'rxjs';
 import { Store, select } from '@ngrx/store';
 import { getUser } from '../../auth/store/auth.selectors';
-import { AppState } from 'src/app/state/app.state';
+import { AppState } from '../../reducers';
 
 @Injectable()
 export class CustomersEffects {

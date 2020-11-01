@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { User } from '../models/user.model';
 
 export enum AuthActionTypes {
@@ -77,8 +78,6 @@ export class LoginFailed implements Action {
 
 export class SocialLogin implements Action {
   readonly type = AuthActionTypes.SOCIAL_LOGIN;
-
-  constructor(public payload: { authProvider: string }) { }
 }
 
 export class LogoutRequested implements Action {
