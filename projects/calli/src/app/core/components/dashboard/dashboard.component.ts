@@ -1,12 +1,13 @@
-import { User } from 'firebase';
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { Subscription, empty, of, from } from 'rxjs';
+
 import { Store, select } from '@ngrx/store';
+
+import { Subscription, empty, of, from } from 'rxjs';
 import { switchMap, take } from 'rxjs/operators';
-import { GoogleApiService } from '../../../auth/services/google-api.service';
+
+import { AppState } from '../../../state/app.state';
 import { Course } from '../../../courses/models/course.model';
 import { CourseDbService } from '../../../courses/services/course-db.service';
-import { AppState } from '../../../reducers';
 
 
 @Component({
@@ -15,7 +16,6 @@ import { AppState } from '../../../reducers';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent implements OnInit, OnDestroy {
-  @Input() user: User;
   /*   itemSub: Subscription;
   boardSub: Subscription;
   */
@@ -26,7 +26,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
     //private boardService: BoardService, //private itemService: ItemService,
     private store: Store<AppState>,
     private courseService: CourseDbService,
-    public googleApiService: GoogleApiService
+
   ) { }
 
   ngOnInit(): void {

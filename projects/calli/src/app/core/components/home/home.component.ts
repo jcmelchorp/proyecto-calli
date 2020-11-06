@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { AppState } from '../../../reducers';
+import { AppState } from '../../../state/app.state';
 import {
   getIsLoggedIn,
   getIsLoading,

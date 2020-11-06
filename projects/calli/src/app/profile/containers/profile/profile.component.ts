@@ -4,7 +4,7 @@ import { Store } from '@ngrx/store';
 
 import { Observable } from 'rxjs';
 
-import { AppState } from '../../../reducers';
+import { AppState } from '../../../state/app.state';
 import { User } from '../../../auth/models/user.model';
 import * as fromAuth from '../../../auth/store/auth.actions';
 import { getUser } from '../../../auth/store/auth.selectors';

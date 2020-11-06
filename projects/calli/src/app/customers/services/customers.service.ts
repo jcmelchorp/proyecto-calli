@@ -109,7 +109,7 @@ export class CustomersService {
    */
   sortBoards(boards: Customer[]): void {
     /** Firestore  */
-    const db = firebase.firestore();
+    const db = firebase.default.firestore();
     const batch = db.batch();
     const refs = boards.map(b => db.collection('boards').doc(b.key));
     refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));

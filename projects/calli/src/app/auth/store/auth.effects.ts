@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 import { Actions, Effect, ofType } from '@ngrx/effects';
 
-import { Observable, of, defer, from } from 'rxjs';
-import { map, switchMap, catchError, tap, take, delay } from 'rxjs/operators';
+import { Observable, of, defer } from 'rxjs';
+import { map, switchMap, catchError, tap, take } from 'rxjs/operators';
 
 import { User } from '../models/user.model';
-import { GoogleApiService } from './../services/google-api.service';
+import { AuthService } from '../services/auth.service';
 import * as auth from './../store/auth.actions';
 import { GravatarService } from '../../shared/services/gravatar.service';
 
@@ -15,21 +15,17 @@ import { GravatarService } from '../../shared/services/gravatar.service';
 export class AuthEffects {
   constructor(
     private actions$: Actions,
-    private googleApiService: GoogleApiService,
+    private authService: AuthService,
     private gravatarService: GravatarService,
     private router: Router
   ) { }
-  /** Register Action
-   *
-   *
-   *
-   */
+
   @Effect()
   registerAction$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.REGISTER_REQUESTED),
     map((action: auth.RegisterRequested) => action.payload),
     switchMap(payload =>
-      this.googleApiService.register(payload.email, payload.password).pipe(
+      this.authService.register(payload.email, payload.password).pipe(
         map((res: any) => {
           const gravatarUrl = this.gravatarService.getUserGravatar(res.user.email);
           const user = {
@@ -37,8 +33,7 @@ export class AuthEffects {
             displayName: payload.username || res.user.displayName,
             email: res.user.email,
             providerId: res.additionalUserInfo.providerId,
-            phoneNumber: res.user.phoneNumber || null,
-            photoURL: res.user.photoURL || gravatarUrl,
+            photoUrl: res.user.photoURL || gravatarUrl,
             isNewUser: res.additionalUserInfo.isNewUser,
             isAdmin: false,
             isOnline: true,
@@ -49,7 +44,7 @@ export class AuthEffects {
           return [
             new auth.RegisterCompleted(),
             new auth.LoginSuccess({ user }),
-            new auth.UpdateProfile({ displayName: payload.username, photoUrl: user.photoURL, }),
+            new auth.UpdateProfile({ displayName: payload.username, photoUrl: user.photoUrl, }),
             new auth.SaveUser({ user }),
           ];
         }),
@@ -63,7 +58,7 @@ export class AuthEffects {
   saveUser$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.SAVE_USER),
     map((action: auth.SaveUser) => action.payload),
-    switchMap((payload: any) => this.googleApiService.createUser(payload.user))
+    switchMap((payload: any) => this.authService.createUser(payload.user))
   );
 
   @Effect({ dispatch: false })
@@ -71,7 +66,7 @@ export class AuthEffects {
     ofType(auth.AuthActionTypes.UPDATE_ONLINE_STATUS),
     map((action: auth.UpdateOnlineStatus) => action.payload),
     switchMap((payload: any) =>
-      this.googleApiService.updateOnlineStatus(payload.uid, payload.status)
+      this.authService.updateOnlineStatus(payload.uid, payload.status)
     ));
 
   @Effect()
@@ -79,7 +74,7 @@ export class AuthEffects {
     ofType(auth.AuthActionTypes.CHECK_USER_ROLE),
     map((action: auth.CheckUserRole) => action.payload),
     switchMap((payload: any) =>
-      this.googleApiService.checkUserRole(payload.uid).pipe(
+      this.authService.checkUserRole(payload.uid).pipe(
         map((isAdmin: boolean) => {
           return new auth.UpdateUserRole({ isAdmin });
         }),
@@ -93,15 +88,14 @@ export class AuthEffects {
     ofType(auth.AuthActionTypes.UPDATE_PROFILE),
     map((action: auth.UpdateProfile) => action.payload),
     switchMap((payload: any) =>
-      this.googleApiService.updateProfile(payload.displayName, payload.photoUrl).pipe(
+      this.authService.updateProfile(payload.displayName, payload.photoUrl).pipe(
         map(() => {
-          const currentUser: any = this.googleApiService.getCurrentUser();
+          const currentUser: any = this.authService.getCurrentUser();
           const updatedUser: any = {
             uid: currentUser.uid || null,
             displayName: currentUser.displayName || null,
             email: currentUser.email || null,
             providerId: currentUser.providerData[0].providerId || null,
-            phoneNumber: currentUser.phoneNumber || null,
             photoUrl: currentUser.photoURL || null
           };
           return new auth.UpdateProfileSuccess({ user: updatedUser });
@@ -110,53 +104,42 @@ export class AuthEffects {
       )
     )
   );
-  /** Login Action
-   *
-   *
-   *
-   *
-  */
+
+
   @Effect()
   loginAction$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.LOGIN_REQUESTED),
     map((action: auth.LoginRequested) => action.payload),
     switchMap((payload) =>
-      this.googleApiService.emailLogin(payload.email, payload.password).pipe(
-        map((res) => {
+      this.authService.login(payload.email, payload.password).pipe(
+        map((res: any) => {
           const user = {
             uid: res.user.uid,
             displayName: res.user.displayName,
             email: res.user.email,
             providerId: res.additionalUserInfo.providerId,
-            phoneNumber: res.user.phoneNumber,
-            photoURL: res.user.photoURL,
-            isNewUser: res.additionalUserInfo.isNewUser
+            photoUrl: res.user.photoURL,
+            isNewUser: res.additionalUserInfo.isNewUser,
           };
           return new auth.LoginSuccess({ user });
         }),
         /* switchMap((user: any) => {
-           if (user.isNewUser) {
-             return [
-               new auth.LoginSuccess({ user }),
-               new auth.SaveUser({ user }),
-               new auth.CheckUserRole({ uid: user.uid })
-             ];
-           } else {
-             return [
-               new auth.LoginSuccess({ user }),
-               new auth.SaveUser({ user }),
-               new auth.CheckUserRole({ uid: user.uid })];
-           }
-         }),*/
+          if (user.isNewUser) {
+            return [
+              new auth.LoginSuccess({ user }),
+              new auth.SaveUser({ user }),
+              new auth.CheckUserRole({ uid: user.uid })
+            ];
+          } else {
+            return [new auth.LoginSuccess({ user }), new auth.CheckUserRole({ uid: user.uid })];
+          }
+        }), */
         tap(() => this.router.navigateByUrl('')),
         catchError((error) => of(new auth.AuthError({ error })))
       )
     )
   );
-  /** Login Success
-   *
-   *
-   */
+
   @Effect()
   loginSuccess$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.LOGIN_SUCCESS),
@@ -172,8 +155,8 @@ export class AuthEffects {
   @Effect()
   socialLogin$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.SOCIAL_LOGIN),
-    map((action: auth.SocialLogin) => action),
-    switchMap((payload) => from(this.googleApiService.login())
+    map((action: auth.SocialLogin) => action.payload),
+    switchMap(payload => this.authService.socialLogin(payload.authProvider)
       .pipe(
         map((res: any) => {
           const user = {
@@ -181,8 +164,7 @@ export class AuthEffects {
             displayName: res.user.displayName,
             email: res.user.email,
             providerId: res.additionalUserInfo.providerId,
-            phoneNumber: res.user.phoneNumber,
-            photoURL: res.user.photoURL,
+            photoUrl: res.user.photoURL,
             isNewUser: res.additionalUserInfo.isNewUser,
           };
           return user;
@@ -197,7 +179,7 @@ export class AuthEffects {
           } else {
             return [
               new auth.LoginSuccess({ user }),
-              new auth.CheckUserRole({ uid: user.uid }),
+              new auth.CheckUserRole({ uid: user.uid })
             ];
           }
         }),
@@ -215,7 +197,7 @@ export class AuthEffects {
   logoutAction$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.LOGOUT_REQUESTED),
     map((action: auth.LogoutRequested) => action.payload),
-    switchMap((payload: any) => this.googleApiService.logout(payload.user.uid)
+    switchMap((payload: any) => this.authService.logout(payload.user.uid)
       .pipe(
         map(() => new auth.LogoutCompleted()),
         tap(() => this.router.navigateByUrl('')),
@@ -229,7 +211,7 @@ export class AuthEffects {
   @Effect()
   getUser$ = this.actions$.pipe(
     ofType(auth.AuthActionTypes.GET_USER),
-    switchMap(() => this.googleApiService.getAuthState()
+    switchMap(() => this.authService.getAuthState()
       .pipe(
         take(1),
         map((authData: any) => {
@@ -239,9 +221,7 @@ export class AuthEffects {
               displayName: authData.displayName,
               email: authData.email,
               providerId: authData.providerData[0].providerId,
-              phoneNumber: authData.user.phoneNumber,
-              photoURL: authData.photoURL,
-              isNewUser: authData.isNewUser
+              photoUrl: authData.photoURL,
             };
             return new auth.LoginSuccess({ user });
           } else {

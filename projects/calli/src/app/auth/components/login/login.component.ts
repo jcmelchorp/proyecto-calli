@@ -12,9 +12,9 @@ import { Store, select } from '@ngrx/store';
 import { Observable, of } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { AppState } from '../../../reducers';
 import * as actions from './../../store/auth.actions';
 import { getError } from '../../store/auth.selectors';
+import { AppState } from '../../../state/app.state';
 
 @Component({
   selector: 'calli-login',
@@ -76,7 +76,7 @@ export class LoginComponent implements OnInit {
     }
   }
 
-  onGoogleLogin(): void {
-    this.store.dispatch(new actions.SocialLogin());
+  onGoogleLogin(providerId: string): void {
+    this.store.dispatch(new actions.SocialLogin({ authProvider: providerId }));
   }
 }

@@ -1,6 +1,8 @@
 import { Injectable, NgModule } from '@angular/core';
+
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Action, Store, select } from '@ngrx/store';
+
 import { Observable, of } from 'rxjs';
 import {
   map,
@@ -9,11 +11,12 @@ import {
   switchMap,
   withLatestFrom,
 } from 'rxjs/operators';
-import * as fromCourses from './../store/course.actions';
+
 import { Course } from '../models/course.model';
-import { getUser } from 'src/app/auth/store/auth.selectors';
 import { CourseDbService } from '../services/course-db.service';
-import { AppState } from 'src/app/state/app.state';
+import * as fromCourses from './../store/course.actions';
+import { AppState } from '../../state/app.state';
+import { getUser } from '../../auth/store/auth.selectors';
 
 @Injectable()
 export class CourseEffect {

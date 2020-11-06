@@ -1,3 +1,4 @@
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -20,13 +21,15 @@ import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { reducers, metaReducers } from './reducers';
 
 import { AdminModule } from './admin/admin.module';
 import { AuthModule } from './auth/auth.module';
 import { CoreModule } from './core/core.module';
 import { MaterialModule } from './material/material.module';
 import { SharedModule } from './shared/shared.module';
+import { reducers, metaReducers } from './state/app.state';
+import { AuthService } from './auth/services/auth.service';
+import { GoogleApiService } from './auth/services/google-api.service';
 
 @NgModule({
   declarations: [
@@ -42,6 +45,7 @@ import { SharedModule } from './shared/shared.module';
     SharedModule,
     MaterialModule,
     FontAwesomeModule,
+    FlexLayoutModule,
     CarouselModule.forRoot(),
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFireAuthModule,

@@ -20,7 +20,7 @@ export class MainProfileComponent implements OnInit {
   ngOnInit(): void {
     this.updateProfileForm = new FormGroup({
       displayName: new FormControl(this.user.displayName),
-      photoURL: new FormControl(this.user.photoURL)
+      photoURL: new FormControl(this.user.photoUrl)
     });
   }
 

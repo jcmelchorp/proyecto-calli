@@ -1,5 +1,6 @@
 import { createSelector } from '@ngrx/store';
-import { AppState } from '../../reducers';
+
+import { AppState } from '../../state/app.state';
 
 
 export const getAdminState = (state: AppState) => state.admin;

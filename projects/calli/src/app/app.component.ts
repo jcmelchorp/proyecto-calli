@@ -5,8 +5,7 @@ import { Store } from '@ngrx/store';
 
 import { Subscription, Observable } from 'rxjs';
 
-import { AppState } from './reducers';
-
+import { AppState } from './state/app.state';
 import { User } from './auth/models/user.model';
 import * as fromAuth from './auth/store/auth.actions';
 import { getIsAdmin, getIsLoading, getIsLoggedIn, getUser } from './auth/store/auth.selectors';

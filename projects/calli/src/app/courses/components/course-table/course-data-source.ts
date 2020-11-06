@@ -2,11 +2,13 @@ import { DataSource } from '@angular/cdk/table';
 import { Input, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
+import { CollectionViewer } from '@angular/cdk/collections';
+
 import { Observable, merge, of, BehaviorSubject } from 'rxjs';
 import { finalize, map, mergeMap } from 'rxjs/operators';
+
 import { Course } from '../../models/course.model';
-import { CollectionViewer } from '@angular/cdk/collections';
-import { GoogleApiService } from '../../../auth/services/google-api.service';
+import { GoogleApiService } from '../../../auth/services/former-google-api.service';
 
 /**
  * Data source for the Table view. This class should

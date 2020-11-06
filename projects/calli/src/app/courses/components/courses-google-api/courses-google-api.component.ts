@@ -1,12 +1,16 @@
-import { GoogleApiService } from './../../../auth/services/google-api.service';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+
 import { faGlobeAmericas, faPlus, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+
 import { Store } from '@ngrx/store';
+
 import { Observable, Subject, Subscription } from 'rxjs';
+
+import { AppState } from '../../../reducers/app.state';
 import { Course } from '../../models/course.model';
-import { AppState } from '../../../reducers';
 import { getIsLoading } from '../../store/course.selectors';
+import { GoogleApiService } from '../../../auth/services/former-google-api.service';
 
 @Component({
   selector: 'calli-courses-google-api',

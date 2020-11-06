@@ -16,7 +16,7 @@ import {
   getUserCustomers,
   getUserCustomersLoading,
 } from '../../store/admin.selectors';
-import { AppState } from '../../../reducers/index';
+import { AppState } from '../../../state/app.state';
 import { User } from '../../../auth/models/user.model';
 import { Course } from '../../../courses/models/course.model';
 import { Customer } from '../../../customers/models/customer.model';

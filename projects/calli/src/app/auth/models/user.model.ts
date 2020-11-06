@@ -1,16 +1,11 @@
-import { FirebaseApp } from '@angular/fire';
-
-export interface User extends firebase.UserInfo {
-  /* uid: string;
+export interface User {
+  uid: string;
   displayName: string;
   email: string;
   providerId: string;
-  photoUrl: string; */
-  isNewUser: boolean;
+  phoneNumber?: string;
+  photoUrl: string;
+  isNewUser?: boolean;
   isAdmin?: boolean;
   isOnline?: boolean;
-}
-export interface Credentials {
-  email: string;
-  password: string;
 }

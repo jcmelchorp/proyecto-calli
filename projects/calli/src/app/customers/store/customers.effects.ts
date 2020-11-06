@@ -1,15 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Actions, Effect, ofType } from '@ngrx/effects';
-import { CustomersService } from '../services/customers.service';
-import { CustomersActionTypes } from './customers.actions';
-import { switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
-import { Customer } from '../models/customer.model';
 
-import * as fromCustomers from './../store/customers.actions';
-import { of } from 'rxjs';
+import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Store, select } from '@ngrx/store';
+
+import { switchMap, map, catchError, withLatestFrom } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+import { Customer } from '../models/customer.model';
+import { CustomersService } from '../services/customers.service';
+import * as fromCustomers from './../store/customers.actions';
+import { AppState } from '../../state/app.state';
 import { getUser } from '../../auth/store/auth.selectors';
-import { AppState } from '../../reducers';
+
+import { CustomersActionTypes } from './customers.actions';
 
 @Injectable()
 export class CustomersEffects {

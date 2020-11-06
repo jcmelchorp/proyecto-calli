@@ -17,7 +17,7 @@ import { map } from 'rxjs/operators';
 import { Course } from '../../models/course.model';
 import { getIsLoading, getCourses } from '../../store/course.selectors';
 import * as courseActions from '../../store/course.actions';
-import { AppState } from '../../../reducers';
+import { AppState } from '../../../reducers/app.state';
 
 @Component({
   selector: 'calli-courses-firebase',

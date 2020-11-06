@@ -42,10 +42,7 @@ const routes: Routes = [{
 { path: 'under-construction', component: UnderConstructionComponent },
 { path: '**', component: NotFoundComponent },];
 @NgModule({
-  imports: [RouterModule.forRoot(routes, {
-    initialNavigation: 'enabled', preloadingStrategy: PreloadAllModules,
-    useHash: false,
-  })],
+  imports: [RouterModule.forRoot(routes, { initialNavigation: 'enabled' })],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

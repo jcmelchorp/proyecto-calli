@@ -48,6 +48,11 @@ import { DeleteButtonComponent } from './components/delete-button/delete-button.
     DeleteButtonComponent,
   ],
   providers: [SnackService],
-
+  entryComponents: [
+    ConfirmModalComponent,
+    CustomersModalComponent,
+    CourseModalComponent,
+    DeleteButtonComponent
+  ],
 })
 export class SharedModule { }

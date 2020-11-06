@@ -145,30 +145,6 @@
     }
   },
   "defaultProject": "calli",
-  "schematics": {
-
-    "@ngrx/schematics":{
-    },
-    "@schematics/angular:class": {
-      "skipTests": true
-    },
-    "@schematics/angular:directive": {
-    },
-    "@schematics/angular:module": {
-    },
-    "@schematics/angular:service": {
-      "skipTests": true,
-      "flat": false
-    },
-    "@schematics/angular:pipe": {},
-    "@schematics/angular:component": {
-      "inlineTemplate": false,
-      "inlineStyle": false,
-      "prefix": "calli",
-      "skipTests": true,
-      "style": "scss"
-    }
-  },
   "cli": {
     "analytics": "d77d4fb8-c051-4e4a-bd8e-2b7be68adc00",
     "defaultCollection": "@schematics/angular",

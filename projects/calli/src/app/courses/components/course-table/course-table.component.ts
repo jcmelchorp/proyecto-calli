@@ -1,5 +1,3 @@
-import { from, merge, Observable, of, Subject, Subscription } from 'rxjs';
-import { Course } from './../../models/course.model';
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
@@ -14,7 +12,6 @@ import {
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable } from '@angular/material/table';
-import { CourseDataSource } from './course-data-source';
 import {
   trigger,
   state,
@@ -22,7 +19,13 @@ import {
   transition,
   animate,
 } from '@angular/animations';
-import { GoogleApiService } from '../../../auth/services/google-api.service';
+
+import { from, merge, Observable, of, Subject, Subscription } from 'rxjs';
+
+import { Course } from './../../models/course.model';
+import { GoogleApiService } from '../../../auth/services/former-google-api.service';
+
+import { CourseDataSource } from './course-data-source';
 
 @Component({
   selector: 'calli-course-table',
