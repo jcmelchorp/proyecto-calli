@@ -2,20 +2,22 @@
   <mat-card-content>
     <h2 class="mat-h2 mb-4">Editar perfil</h2>
     <!--Body-->
-    <form [formGroup]="updateProfileForm">
-      <mat-form-field>
-        <mat-label for="form1">Nombre completo</mat-label>
-        <input matInput type="text" #form1 formControlName="displayName" />
-
+    <form [formGroup]="updateProfileForm" (ngSubmit)="onProfileUpdate()">
+      <mat-form-field class="d-block" appearance="outline">
+        <mat-label>Nombre completo</mat-label>
+        <input matInput type="text" #displayName formControlName="displayName" />
       </mat-form-field>
-
-      <mat-form-field>
-        <mat-label for="form2">Photo Url</mat-label>
-        <input matInput type="text" #form2 formControlName="photoURL" />
+      <mat-form-field class="d-block" appearance="outline">
+        <mat-label>Photo Url</mat-label>
+        <input matInput type="text" #photoURL formControlName="photoURL" />
+      </mat-form-field>
+      <mat-form-field class="d-block" appearance="outline">
+        <mat-label>Phone Number</mat-label>
+        <input matInput type="text" #phoneNumber formControlName="phoneNumber" />
       </mat-form-field>
 
       <div class="text-right">
-        <button mat-raised-button type="button" color="warn" (click)="onProfileUpdate()">Update profile</button>
+        <button mat-raised-button type="submit" color="warn">Update profile</button>
       </div>
     </form>
   </mat-card-content>

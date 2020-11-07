@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { FormGroup, FormControl, FormBuilder } from '@angular/forms';
 
 import { User } from '../../../auth/models/user.model';
 
@@ -15,12 +15,13 @@ export class MainProfileComponent implements OnInit {
 
   updateProfileForm: FormGroup;
 
-  constructor() { }
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
-    this.updateProfileForm = new FormGroup({
+    this.updateProfileForm = this.fb.group({
       displayName: new FormControl(this.user.displayName),
-      photoURL: new FormControl(this.user.photoUrl)
+      photoURL: new FormControl(this.user.photoURL),
+      phoneNumber: new FormControl(this.user.phoneNumber)
     });
   }
 

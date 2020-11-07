@@ -2,7 +2,7 @@
   <mat-card-content>
     <div class="text-center">
       <div class="avatar" style="margin-top: -60px">
-        <img *ngIf="user.photoUrl" src="{{ user.photoUrl }}" height="96" width="96" class="rounded-circle"
+        <img *ngIf="user.photoURL" src="{{ user.photoURL }}" height="96" width="96" class="rounded-circle"
           alt="avatar image">
       </div>
 
@@ -15,7 +15,6 @@
 
       </h2>
       <a mat-button color="accent" (click)="onLogout()">Cerrar sesión</a>
-      <a mat-button color="warn">Editar</a>
     </div>
   </mat-card-content>
 </mat-card>

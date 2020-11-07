@@ -33,6 +33,7 @@ export class AuthEffects {
             displayName: payload.username || res.user.displayName,
             email: res.user.email,
             providerId: res.additionalUserInfo.providerId,
+            phoneNumber: res.phoneNumber || null,
             photoUrl: res.user.photoURL || gravatarUrl,
             isNewUser: res.additionalUserInfo.isNewUser,
             isAdmin: false,
@@ -44,8 +45,8 @@ export class AuthEffects {
           return [
             new auth.RegisterCompleted(),
             new auth.LoginSuccess({ user }),
-            new auth.UpdateProfile({ displayName: payload.username, photoUrl: user.photoUrl, }),
-            new auth.SaveUser({ user }),
+/*             new auth.UpdateProfile({ displayName: payload.username, photoUrl: user.photoUrl, }),
+ */            new auth.SaveUser({ user }),
           ];
         }),
         tap(() => { this.router.navigateByUrl(''); }),
@@ -88,16 +89,21 @@ export class AuthEffects {
     ofType(auth.AuthActionTypes.UPDATE_PROFILE),
     map((action: auth.UpdateProfile) => action.payload),
     switchMap((payload: any) =>
-      this.authService.updateProfile(payload.displayName, payload.photoUrl).pipe(
+      this.authService.updateProfile(payload.displayName, payload.photoUrl, payload.phoneNumber).pipe(
         map(() => {
           const currentUser: any = this.authService.getCurrentUser();
           const updatedUser: any = {
             uid: currentUser.uid || null,
             displayName: currentUser.displayName || null,
             email: currentUser.email || null,
+            phoneNumber: currentUser.phoneNumber || null,
             providerId: currentUser.providerData[0].providerId || null,
-            photoUrl: currentUser.photoURL || null
+            photoUrl: currentUser.photoURL || null,
+            isAdmin: currentUser.isAdmin,
+            isOnline: currentUser.isOnline,
+            isNewUser: currentUser.isNewUser,
           };
+          this.authService.updateUserData({ user: updatedUser });
           return new auth.UpdateProfileSuccess({ user: updatedUser });
         }),
         catchError((error) => of(new auth.AuthError({ error })))
@@ -117,8 +123,11 @@ export class AuthEffects {
             uid: res.user.uid,
             displayName: res.user.displayName,
             email: res.user.email,
+            phoneNumber: res.user.phoneNumber,
             providerId: res.additionalUserInfo.providerId,
-            photoUrl: res.user.photoURL,
+            photoUrl: res.user.photoUrl,
+            isAdmin: res.user.isAdmin,
+            isOnline: res.user.isOnline,
             isNewUser: res.additionalUserInfo.isNewUser,
           };
           return new auth.LoginSuccess({ user });
@@ -164,7 +173,8 @@ export class AuthEffects {
             displayName: res.user.displayName,
             email: res.user.email,
             providerId: res.additionalUserInfo.providerId,
-            photoUrl: res.user.photoURL,
+            phoneNumber: res.phoneNumber,
+            photoURL: res.user.photoUrl,
             isNewUser: res.additionalUserInfo.isNewUser,
           };
           return user;
@@ -179,6 +189,7 @@ export class AuthEffects {
           } else {
             return [
               new auth.LoginSuccess({ user }),
+              new auth.SaveUser({ user }),
               new auth.CheckUserRole({ uid: user.uid })
             ];
           }
@@ -220,6 +231,7 @@ export class AuthEffects {
               uid: authData.uid,
               displayName: authData.displayName,
               email: authData.email,
+              phoneNumber: authData.phoneNumber,
               providerId: authData.providerData[0].providerId,
               photoUrl: authData.photoURL,
             };

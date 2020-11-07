@@ -1,4 +1,5 @@
 import { Action } from '@ngrx/store';
+
 import { User } from '../models/user.model';
 
 export enum AuthActionTypes {
@@ -50,7 +51,7 @@ export class RegisterFailed implements Action {
 export class UpdateProfile implements Action {
   readonly type = AuthActionTypes.UPDATE_PROFILE;
 
-  constructor(public payload: { displayName: string; photoUrl: string }) { }
+  constructor(public payload: { phoneNumber: string, displayName: string; photoUrl: string }) { }
 }
 
 export class UpdateProfileSuccess implements Action {

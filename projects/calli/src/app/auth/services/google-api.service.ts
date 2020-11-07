@@ -18,11 +18,11 @@ export class GoogleApiService {
   calendarItems: any[];
   constructor(public afAuth: AngularFireAuth) {
     this.initClient();
-    this.afAuth.authState.subscribe((user) => {
+    /* this.afAuth.authState.subscribe((user) => {
       if (user) {
         this.user$ = afAuth.authState;
       }
-    });
+    }); */
   }
 
   initClient(): void {

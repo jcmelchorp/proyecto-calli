@@ -4,7 +4,7 @@ export interface User {
   email: string;
   providerId: string;
   phoneNumber?: string;
-  photoUrl: string;
+  photoURL?: string;
   isNewUser?: boolean;
   isAdmin?: boolean;
   isOnline?: boolean;

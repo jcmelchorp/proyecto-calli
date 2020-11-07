@@ -19,6 +19,7 @@ import { GoogleApiService } from '../services/google-api.service';
 })
 export class AuthService {
   user$: Observable<User>;
+  userId: string;
   constructor(
     private afAuth: AngularFireAuth,
     private db: AngularFireDatabase,
@@ -28,30 +29,50 @@ export class AuthService {
     this.user$ = this.getAuthState().pipe(
       switchMap((user) => {
         if (user) {
-          return this.afs.collection('users').doc<User>(`${user.uid}`).valueChanges();
+          this.userId = user.uid;
+          console.log(this.userId)
+          return this.afs.collection('users').doc<User>(`${this.userId}`).valueChanges();
         } else {
           return of(null);
         }
       })
     );
   }
-  createUser(user: User) {
+  createUser(user: User): Promise<void> {
     return this.afs.collection('users').add({
       uid: user.uid,
-      dispalyName: user.displayName,
+      displayName: user.displayName,
       email: user.email,
-      photoURL: user.photoUrl,
+      photoURL: user.photoURL,
       phoneNumber: user.phoneNumber,
       providerId: user.providerId,
-      isAdmin: user.isAdmin,
-      isNewUser: user.isNewUser,
-      isOnline: user.isOnline,
+      isAdmin: false,
     }).then(() => this.saveUser(user));
   }
 
-  /* updateUserData({ uid, displayName, email, providerId, photoUrl, isAdmin }: User): Promise<void> {
+  saveUser(user: User): Promise<void> {
+    const users = this.db.object('users/' + user.uid);
+    return users.set(user);
+  }
+
+  updateUserData(user) {
+    // Sets user data to firestore on login
+    const userRef: AngularFirestoreDocument = this.afs.doc(`users/${user.uid}`);
+    const data = {
+      uid: user.uid,
+      email: user.email,
+      displayName: user.displayName,
+      photoURL: user.photoURL,
+      phoneNumber: user.phoneNumber,
+      isNewUser: user.isNewUser,
+      isAdmin: user.isAdmin,
+      isOnline: user.isOnline
+    };
+    return userRef.set(data, { merge: true });
+  }
+  /* updateUserData({ uid, displayName, email, providerId, photoURL, isAdmin }: User): Promise<void> {
     const userRef: AngularFirestoreDocument<User> = this.afs.doc(`users/${uid}`);
-    const data: User = { uid, displayName, email, providerId, photoUrl, isAdmin };
+    const data: User = { uid, displayName, email, providerId, photoURL, isAdmin };
     return userRef.set(data, { merge: true });
   } */
 
@@ -64,12 +85,12 @@ export class AuthService {
     return from(this.afAuth.signInWithEmailAndPassword(email, password));
   }
 
-  updateProfile(newName: string, newPhotoUrl: string): any {
-    this.db.database.ref().child('users/' + ``).onDisconnect().update({ isOnline: false });
-    const userProfile = this.getCurrentUser();
-    if (userProfile) {
-      return from(userProfile) as any;
-    }
+  updateProfile(phoneNumber: string, displayName: string, photoURL: string): any {
+    return this.db.database.ref('users').child(`${this.userId}`).update({
+      phoneNumber,
+      displayName,
+      photoURL
+    });
   }
 
   socialLogin(authProvider: string) {
@@ -93,11 +114,7 @@ export class AuthService {
     return from(this.afAuth.signOut());
   }
 
-  saveUser(user: User): Promise<void> {
-    this.createUser(user);
-    const users = this.db.object('users/' + user.uid);
-    return users.set(user);
-  }
+
 
   updateOnlineStatus(uid: string, status: boolean): Observable<void> {
     if (status) {
