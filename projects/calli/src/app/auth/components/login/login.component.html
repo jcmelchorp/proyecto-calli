@@ -8,10 +8,9 @@
     <div class="col-lg-4 col-sm-8">
       <mat-card>
         <img mat-card-image src="assets/images/stripe.png">
-
         <mat-card-header>
           <mat-card-title>Inicio de sesión</mat-card-title>
-          <!-- <img mat-card-avatar src="assets/images/login.png"> -->
+          <img mat-card-avatar src="assets/images/login.png">
         </mat-card-header>
         <mat-card-content>
           <div *ngIf="error$ | async as error" class="alert alert-danger" role="alert">
@@ -37,13 +36,14 @@
               <mat-error *ngIf="password.invalid">{{error$}}</mat-error>
             </mat-form-field>
             <!-- Sign in button -->
-            <button class="btn btn-block btn-success" type="submit">Entrar</button>
-            <!-- Social login -->
-            <div fxLayoutAlign="center">
-              <button class="btn-block" mat-raised-button type="button" (click)="onGoogleLogin('google')">
+            <div fxLayout="column">
+              <button class="btn btn-block btn-success" type="submit">Entrar</button>
+              <!-- Social login -->
+              <button mat-raised-button class="btn-block" type="button" (click)="onGoogleLogin('google')">
                 <img mat-card-avatar src="assets/images/google-logo.png">
               </button>
             </div>
+
           </form>
           <!-- Register -->
           <p>¿No está inscrito?

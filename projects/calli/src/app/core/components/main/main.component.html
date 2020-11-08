@@ -1,7 +1,7 @@
 <div class="breadcrumb">
-  <div fxLayout="row" fxLayoutAlign="left">
+  <div fxLayout="row" fxLayoutAlign="left center">
     <div>
-      <img class="img-fluid" [ngStyle]="{ height: '110px', width: 'auto' }" src="assets/icons/1200px-Calli.svg.png" />
+      <img [ngStyle]="{ height: '120px', width: 'auto' }" src="assets/images/800px-Calli.svg.png" />
     </div>
     <div>
       <p class="display-4 app-name">
@@ -17,7 +17,7 @@
   <div fxLayout="row wrap" fxLayout.lt-sm="column" fxLayoutGap="10px" fxLayoutAlign="flex-start">
     <ng-container *ngFor="let item of cardItems">
       <mat-card [class.mat-elevation-z4]="false" class="mb-2" fxFlex="0 1 calc(33.3% - 10px)"
-        fxFlex.lt-md="0 1 calc(50% - 10px)" fxFlex.lt-sm="100%">
+        fxFlex.lt-md="0 1 calc(50% - 10px)" fxFlex.lt-sm="100%" [routerLink]="[item.route_link]">
         <mat-card-header>
           <img mat-mat-card-avatar [ngStyle]="{ height: '100px', width: 'auto' }" src="{{item.imageUrl}}">
           <mat-card-title>
@@ -25,7 +25,8 @@
           </mat-card-title>
           <mat-card-subtitle>{{ item.description }}</mat-card-subtitle>
         </mat-card-header>
-        <mat-card-content> </mat-card-content>
+        <mat-card-content>
+        </mat-card-content>
         <mat-card-footer> </mat-card-footer>
       </mat-card>
     </ng-container>

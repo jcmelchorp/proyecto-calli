@@ -11,21 +11,21 @@ export class MainComponent {
       title: 'Courses',
       description:
         'Explore your courses, check status, students, classworks and grades.',
-      route_link: '/information/covid-risk',
+      route_link: '/courses',
       imageUrl: 'assets/images/googleclassroom.png',
     },
     {
       title: 'Firebase',
       description: 'Check for what is backed in Firebase RealTime Database',
-      route_link: '/courses',
-      imageUrl: 'assets/images/FirebaseRTD.png',
+      route_link: '/costumers',
+      imageUrl: 'assets/images/jarron.png',
     },
     {
-      title: 'Infografías',
+      title: 'Cuestionarios',
       description:
-        'Descarga anuncios e imagenes tipo poster para informar a tu comunidad',
-      route_link: '/information/covid-risk',
-      imageUrl: 'assets/images/FireClassroom.png',
+        'Crea un cuestionario y aplicalo en alguna de tus clases.',
+      route_link: '/admin',
+      imageUrl: 'assets/images/dientes01.png',
     },
   ];
 }
