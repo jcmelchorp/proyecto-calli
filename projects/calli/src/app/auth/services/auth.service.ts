@@ -47,7 +47,12 @@ export class AuthService {
       phoneNumber: user.phoneNumber,
       providerId: user.providerId,
       isAdmin: false,
-    }).then(() => this.saveUser(user));
+    }).then((docRef) => {
+      this.saveUser(user);
+      console.log('Document successfully written with ID: ', docRef.id);
+    }).catch((err) => {
+      console.error('Error writing document: ', err);
+    });
   }
 
   saveUser(user: User): Promise<void> {

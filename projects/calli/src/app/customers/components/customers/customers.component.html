@@ -10,19 +10,13 @@
   </button>
   <div *ngIf="(customers?.length)" fxLayout="row fill" fxLayout.lt-md="column" fxLayoutGap="5px"
     fxLayoutAlign="space-between top">
-    <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+    <mat-card fxFlex="0 1 calc(50% - 5px)" fxFlex.lt-md="100%">
       <calli-customers-list [customers]="customers" [isLoading$]="isLoading$" (customerEdited)="onCustomerEdit($event)"
         (customerDeleted)="onCustomerDelete($event)"></calli-customers-list>
-    </div>
-    <div fxFlex="0 1 calc(50% - 10px)" fxFlex.lt-md="100%">
+    </mat-card>
+
+    <mat-card fxFlex="0 1 calc(50% - 5px)" fxFlex.lt-md="100%">
       <calli-customer-drag-and-drop [customers]="customers" [isLoading$]="isLoading$"></calli-customer-drag-and-drop>
-    </div>
-  </div>
-  <div *ngIf="!(customers?.length)">
-    <mat-card>
-      <mat-card-content>
-        No customers found
-      </mat-card-content>
     </mat-card>
   </div>
 </div>

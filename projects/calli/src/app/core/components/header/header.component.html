@@ -49,6 +49,7 @@
   <button *ngIf="isAdmin" mat-menu-item [routerLink]="['admin']">
     Administración
   </button>
+  <button mat-menu-item [routerLink]="['/manage/users']">Users</button>
   <button mat-menu-item (click)="onLogout()">Cerrar sesión</button>
 </mat-menu>
 <!-- -->
@@ -57,5 +58,7 @@
   <a mat-menu-item [routerLink]="['/courses/google']">Courses</a>
   <a mat-menu-item [routerLink]="['/customers']">Customers</a>
   <a mat-menu-item [routerLink]="['/quizzes/dashboard']">Quizzes</a>
+  <a mat-menu-item [routerLink]="['/manage/users']">Users</a>
+
 </mat-menu>
 <!-- -->

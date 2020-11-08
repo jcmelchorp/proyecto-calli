@@ -22,6 +22,11 @@ const routes: Routes = [{
       canActivate: [AdminGuard],
     },
     {
+      path: 'manage',
+      loadChildren: () =>
+        import('./manage-users/manage-users.module').then(m => m.ManageUsersModule)
+    },
+    {
       path: 'profile',
       loadChildren: () =>
         import('./profile/profile.module').then((m) => m.ProfileModule),

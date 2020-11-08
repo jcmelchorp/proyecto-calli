@@ -26,11 +26,11 @@ import { AdminComponent } from './containers/admin/admin.component';
     AdminComponent,
     UsersListComponent,
     UserComponent,
-    UserDetailComponent
-  ],
+    UserDetailComponent],
   imports: [
     CommonModule,
     AdminRoutingModule,
+    SharedModule,
     MaterialModule,
     FlexLayoutModule,
     FontAwesomeModule,

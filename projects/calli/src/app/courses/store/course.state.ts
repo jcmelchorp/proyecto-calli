@@ -8,6 +8,6 @@ export interface CoursesState {
 
 export const coursesInitialState: CoursesState = {
   courses: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
 };
