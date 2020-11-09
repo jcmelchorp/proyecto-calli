@@ -89,7 +89,7 @@ export class AuthEffects {
     ofType(auth.AuthActionTypes.UPDATE_PROFILE),
     map((action: auth.UpdateProfile) => action.payload),
     switchMap((payload: any) =>
-      this.authService.updateProfile(payload.displayName, payload.photoUrl, payload.phoneNumber).pipe(
+      this.authService.updateProfile(payload.displayName, payload.photoURL, payload.phoneNumber).pipe(
         map(() => {
           const currentUser: any = this.authService.getCurrentUser();
           const updatedUser: any = {
@@ -168,6 +168,7 @@ export class AuthEffects {
     switchMap(payload => this.authService.socialLogin(payload.authProvider)
       .pipe(
         map((res: any) => {
+          console.log(res);
           const user = {
             uid: res.user.uid,
             displayName: res.user.displayName,

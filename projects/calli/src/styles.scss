@@ -7,6 +7,7 @@ body {
 body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #ffffff;
 }
 calli-root {
   min-height: 100%;
@@ -17,6 +18,7 @@ calli-root {
 }
 mat-toolbar {
   height: 50px !important;
+  background-color: #ffffff;
 }
 .mat-toolbar-multiple-rows {
   min-height: 50px;
@@ -41,7 +43,7 @@ calli-header {
 
 
 calli-welcome {
-  background-color: white;
+  background-color: #ffffff;
 }
 
 /*  footer {
