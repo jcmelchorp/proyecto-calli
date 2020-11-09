@@ -1,0 +1,23 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between top">
+  <h2>{{data.dialogAction}} Cuestionario</h2>
+  <mat-icon mat-button [mat-dialog-close]="true">close</mat-icon>
+</div>
+<h1 mat-dialog-title> Quiz</h1>
+<div mat-dialog-content>
+  <p>Quiz ID: {{data.quiz.id}}</p>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Título</mat-label>
+    <input placeholder="title" matInput [(ngModel)]="data.quiz.title" />
+  </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Descripción</mat-label>
+    <textarea placeholder="Description" matInput [(ngModel)]="data.quiz.description"> </textarea>
+  </mat-form-field>
+
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cancel</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    {{data.dialogAction}}
+  </button>
+</div>

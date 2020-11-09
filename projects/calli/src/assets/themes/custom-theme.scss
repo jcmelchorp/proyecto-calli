@@ -7,9 +7,9 @@ $custom-typography: mat-typography-config($font-family: "comfortaa");
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $light-primary: mat-palette($mat-blue-grey);
-$light-accent: mat-palette($mat-green, A200, A100, A400);
+$light-accent: mat-palette($mat-blue, A200, A100, A400);
 // The warn palette is optional (defaults to red).
-$light-warn: mat-palette($mat-amber);
+$light-warn: mat-palette($mat-red);
 // Create the theme object (a Sass map containing all of the palettes).
 $light-theme: mat-light-theme($light-primary, $light-accent, $light-warn);
 // Include theme styles for core and each component used in your app.

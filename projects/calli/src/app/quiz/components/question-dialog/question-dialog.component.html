@@ -1,0 +1,23 @@
+<div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between top">
+  <h2>{{ data.isNew ? 'Crear' : 'Modificar' }} Pregunta</h2>
+  <mat-icon mat-button [mat-dialog-close]="true">close</mat-icon>
+</div>
+<div mat-dialog-content>
+  <mat-form-field class="d-block" appearance="outline">
+    <input placeholder="Escribe tu pregunta" matInput [(ngModel)]="data.question.question" />
+  </mat-form-field>
+
+  <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="data.question.label">
+    <mat-button-toggle *ngFor="let opt of labelOptions" [value]="opt">
+      <mat-icon [ngClass]="opt">{{
+            opt === 'gray' ? 'check_circle' : 'lens'
+          }}</mat-icon>
+    </mat-button-toggle>
+  </mat-button-toggle-group>
+</div>
+<div mat-dialog-actions fxLayout="row" fxLayoutAlign="space-between top">
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
+    {{ data.isNew ? 'Crear' : 'Modificar' }}
+  </button>
+  <calli-delete-button (delete)="handleQuestionDelete()" *ngIf="!data.isNew"></calli-delete-button>
+</div>

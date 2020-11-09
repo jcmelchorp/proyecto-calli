@@ -1,0 +1,27 @@
+<mat-accordion>
+  <mat-expansion-panel>
+    <mat-expansion-panel-header>
+      <mat-panel-title>
+        <ng-content></ng-content>
+        <mat-icon mat-button (click)="quizEdit()">edit</mat-icon>
+        <p> {{ quiz.title }} </p>
+      </mat-panel-title>
+      <mat-panel-description>
+        <p>Firestore ID: {{ quiz.id }}</p>
+      </mat-panel-description>
+    </mat-expansion-panel-header>
+    <!-- content -->
+    <p> {{ quiz.description }} </p>
+    <div class="questions" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="questionDrop($event)">
+      <div class="inner-card" cdkDrag *ngFor="let question of quiz.questions; let i = index"
+        (click)="openDialog(question, i)">
+        <mat-card [ngClass]="question.label"> {{ question.question }} </mat-card>
+      </div>
+
+      <button mat-stroked-button (click)="openDialog()">
+        <mat-icon>add</mat-icon>
+      </button>
+      <calli-delete-button (delete)="handleDelete()"></calli-delete-button>
+    </div>
+  </mat-expansion-panel>
+</mat-accordion>

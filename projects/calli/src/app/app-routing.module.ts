@@ -24,7 +24,8 @@ const routes: Routes = [{
     {
       path: 'manage',
       loadChildren: () =>
-        import('./manage-users/manage-users.module').then(m => m.ManageUsersModule)
+        import('./manage-users/manage-users.module').then(m => m.ManageUsersModule),
+      canActivate: [AuthGuard],
     },
     {
       path: 'profile',
@@ -38,7 +39,9 @@ const routes: Routes = [{
         import('./customers/customers.module').then((m) => m.CustomersModule),
       canActivate: [AuthGuard]
     },
-  ],
+    { path: 'quizes', loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule) },
+/*     { path: 'questionaries', loadChildren: () => import('./questionary/questionary.module').then(m => m.QuestionaryModule) }
+ */  ],
 },
 { path: 'login', component: LoginComponent },
 { path: 'register', component: RegisterComponent },

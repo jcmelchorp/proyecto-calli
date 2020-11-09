@@ -1,77 +1,14 @@
-[debug] [2020-11-09T00:34:06.408Z] ----------------------------------------------------------------------
-[debug] [2020-11-09T00:34:06.411Z] Command:       /usr/bin/node /usr/bin/firebase deploy
-[debug] [2020-11-09T00:34:06.412Z] CLI Version:   8.15.1
-[debug] [2020-11-09T00:34:06.412Z] Platform:      linux
-[debug] [2020-11-09T00:34:06.412Z] Node Version:  v14.15.0
-[debug] [2020-11-09T00:34:06.413Z] Time:          Sun Nov 08 2020 18:34:06 GMT-0600 (hora estándar central)
-[debug] [2020-11-09T00:34:06.413Z] ----------------------------------------------------------------------
-[debug] [2020-11-09T00:34:06.413Z] 
-[debug] [2020-11-09T00:34:06.423Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
-[debug] [2020-11-09T00:34:06.424Z] > authorizing via signed-in user
-[debug] [2020-11-09T00:34:06.424Z] [iam] checking project proyecto-calli for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
-[debug] [2020-11-09T00:34:06.427Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
-[debug] [2020-11-09T00:34:06.428Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
+[debug] [2020-11-09T01:27:03.875Z] ----------------------------------------------------------------------
+[debug] [2020-11-09T01:27:03.877Z] Command:       /usr/bin/node /usr/bin/firebase deploy
+[debug] [2020-11-09T01:27:03.877Z] CLI Version:   8.15.1
+[debug] [2020-11-09T01:27:03.878Z] Platform:      linux
+[debug] [2020-11-09T01:27:03.878Z] Node Version:  v14.15.0
+[debug] [2020-11-09T01:27:03.878Z] Time:          Sun Nov 08 2020 19:27:03 GMT-0600 (hora estándar central)
+[debug] [2020-11-09T01:27:03.878Z] ----------------------------------------------------------------------
+[debug] [2020-11-09T01:27:03.878Z] 
+[debug] [2020-11-09T01:27:03.884Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2020-11-09T01:27:03.885Z] > authorizing via signed-in user
+[debug] [2020-11-09T01:27:03.885Z] [iam] checking project proyecto-calli for permissions ["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]
+[debug] [2020-11-09T01:27:03.888Z] > refreshing access token with scopes: ["email","https://www.googleapis.com/auth/cloud-platform","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","openid"]
+[debug] [2020-11-09T01:27:03.888Z] >>> HTTP REQUEST POST https://www.googleapis.com/oauth2/v3/token  
  <request body omitted>
-[debug] [2020-11-09T00:34:06.690Z] <<< HTTP RESPONSE 200 {"pragma":"no-cache","cache-control":"no-cache, no-store, max-age=0, must-revalidate","expires":"Mon, 01 Jan 1990 00:00:00 GMT","date":"Mon, 09 Nov 2020 00:34:06 GMT","content-type":"application/json; charset=utf-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","server":"scaffolding on HTTPServer2","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[debug] [2020-11-09T00:34:06.695Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/proyecto-calli:testIamPermissions  
- {"permissions":["datastore.indexes.create","datastore.indexes.delete","datastore.indexes.list","datastore.indexes.update","firebase.projects.get","firebasedatabase.instances.update","firebasehosting.sites.update"]}
-[debug] [2020-11-09T00:34:07.029Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 09 Nov 2020 00:34:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=77","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[debug] [2020-11-09T00:34:07.031Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/proyecto-calli  
- 
-[debug] [2020-11-09T00:34:07.303Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 09 Nov 2020 00:34:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[debug] [2020-11-09T00:34:07.306Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects/proyecto-calli  
- 
-[debug] [2020-11-09T00:34:07.567Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Mon, 09 Nov 2020 00:34:07 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3-Q050=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-T050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
-[info] 
-[info] === Deploying to 'proyecto-calli'...
-[info] 
-[info] i  deploying database, firestore, hosting 
-[info] i  database: checking rules syntax... 
-[debug] [2020-11-09T00:34:07.576Z] >>> HTTP REQUEST PUT https://proyecto-calli.firebaseio.com/.settings/rules.json?dryRun=true  
- {
-  "rules": {
-    ".read": false,
-    ".write": false,
-    "items": {
-      ".read": "root.child('admins').child(auth.uid).val() === true",
-      "$item": {
-        ".write": "auth.uid == $item || root.child('admins').child(auth.uid).val() === true",
-        ".read": "auth.uid == $item || root.child('admins').child(auth.uid).val() === true"
-      }
-    },
-    "customers": {
-      ".read": "root.child('admins').child(auth.uid).val() === true",
-      "$customer": {
-        ".write": "auth.uid == $customer || root.child('admins').child(auth.uid).val() === true",
-        ".read": "auth.uid == $customer || root.child('admins').child(auth.uid).val() === true"
-      }
-    },
-    "courses": {
-      ".read": "root.child('admins').child(auth.uid).val() === true",
-      "$course": {
-        ".write": "auth.uid == $course || root.child('admins').child(auth.uid).val() === true",
-        ".read": "auth.uid == $course || root.child('admins').child(auth.uid).val() === true"
-      }
-    },
-    "users": {
-      ".read": "root.child('admins').child(auth.uid).val() === true",
-      "$user": {
-        ".write": "auth.uid == $user || root.child('admins').child(auth.uid).val() === true",
-        ".read": "auth.uid == $user || root.child('admins').child(auth.uid).val() === true"
-      }
-    },
-    "admins": {
-      "$admin": {
-        ".write": "root.child('admins').child(auth.uid).val() === true",
-        ".read": "auth.uid == $admin || root.child('admins').child(auth.uid).val() === true"
-      }
-    }
-  }
-}
-
-[debug] [2020-11-09T00:34:08.034Z] <<< HTTP RESPONSE 200 {"server":"nginx","date":"Mon, 09 Nov 2020 00:34:08 GMT","content-type":"application/json; charset=utf-8","content-length":"15","connection":"keep-alive","access-control-allow-origin":"*","cache-control":"no-cache","strict-transport-security":"max-age=31556926; includeSubDomains; preload"}
-[info] ✔  database: rules syntax for database proyecto-calli is valid 
-[info] i  firestore: reading indexes from firestore.indexes.json... 
-[info] i  cloud.firestore: checking firestore.rules for compilation errors... 
-[debug] [2020-11-09T00:34:08.038Z] >>> HTTP REQUEST POST https://firebaserules.googleapis.com/v1/projects/proyecto-calli:test  
- {"source":{"files":[{"name":"firestore.rules","content":"rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /{document=**} {\n      allow read, write: if true;\n    }\n    // match /users/{userId} {\n    //    allow write, read: if isOwner(userId);\n    // }\n\n    // Reusable function to determine document ownership\n    // function isOwner(userId) {\n    //    return request.auth.uid == userId\n    // }\n  }\n}\n"}]}}

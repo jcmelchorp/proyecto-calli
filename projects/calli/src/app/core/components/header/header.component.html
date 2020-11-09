@@ -6,9 +6,9 @@
       </button>
       <!--buttons disappear on Xs devices-->
       <div *ngIf="!deviceXs && isLoggedIn && !isLoading">
-        <button mat-button [routerLink]="['/courses/google']">Courses</button>
         <button mat-button [routerLink]="['/customers']">Customers</button>
-        <button mat-button [routerLink]="['/quizzes/dashboard']">Quizzes</button>
+        <button mat-button [routerLink]="['/questionaries']">Questionaries</button>
+        <button mat-button [routerLink]="['/quizes']">Quizzes</button>
       </div>
     </div>
     <div fxLayout="row">
@@ -55,9 +55,9 @@
 <!-- -->
 <!-- Menu Items -->
 <mat-menu #appsMenu="matMenu" fxLayoutAlign="end">
-  <a mat-menu-item [routerLink]="['/courses/google']">Courses</a>
   <a mat-menu-item [routerLink]="['/customers']">Customers</a>
-  <a mat-menu-item [routerLink]="['/quizzes/dashboard']">Quizzes</a>
+  <a mat-menu-item [routerLink]="['/questionaries']">Questionaries</a>
+  <a mat-menu-item [routerLink]="['/quizes']">Quizzes</a>
   <a mat-menu-item [routerLink]="['/manage/users']">Users</a>
 
 </mat-menu>

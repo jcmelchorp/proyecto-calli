@@ -23,7 +23,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   courses: Course[];
 
   constructor(
-    //private boardService: BoardService, //private itemService: ItemService,
+    // private boardService: BoardService, //private itemService: ItemService,
     private store: Store<AppState>,
     private courseService: CourseDbService,
 
