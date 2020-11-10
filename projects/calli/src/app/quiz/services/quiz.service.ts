@@ -23,8 +23,7 @@ export class QuizService {
     const user = await this.afAuth.currentUser;
     return this.db.collection('quizes').add({
       ...data,
-      uid: user.uid,
-      questions: [{ question: 'Hello!', label: 'yellow' }]
+      uid: user.uid
     });
   }
 

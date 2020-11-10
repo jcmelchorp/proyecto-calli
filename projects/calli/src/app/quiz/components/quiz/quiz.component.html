@@ -15,7 +15,7 @@
     <div class="questions" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="questionDrop($event)">
       <div class="inner-card" cdkDrag *ngFor="let question of quiz.questions; let i = index"
         (click)="openDialog(question, i)">
-        <mat-card [ngClass]="question.label"> {{ question.question }} </mat-card>
+        <mat-card [ngClass]="question.label"> {{ question.questionText }} </mat-card>
       </div>
 
       <button mat-stroked-button (click)="openDialog()">

@@ -9,7 +9,7 @@ export class Quiz {
 }
 
 export class Question {
-  question?: string;
+  questionText?: string;
   correctIndex?: number;
   questionMediaUrl?: string;
   isActive?: boolean;

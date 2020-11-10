@@ -1,12 +1,47 @@
 <div mat-dialog-title fxLayout="row" fxLayoutAlign="space-between top">
   <h2>{{ data.isNew ? 'Crear' : 'Modificar' }} Pregunta</h2>
-  <mat-icon mat-button [mat-dialog-close]="true">close</mat-icon>
+  <mat-icon mat-button (click)="onNoClick()" [mat-dialog-close]>close</mat-icon>
 </div>
 <div mat-dialog-content>
   <mat-form-field class="d-block" appearance="outline">
-    <input placeholder="Escribe tu pregunta" matInput [(ngModel)]="data.question.question" />
+    <mat-label>Pregunta</mat-label>
+    <input placeholder="Escribe tu pregunta" matInput [(ngModel)]="data.question.questionText" />
   </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Opción 1</mat-label>
+    <input placeholder="Opción 1" matInput [(ngModel)]="data.question.answers[0].answerText" />
+  </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Opción 2</mat-label>
+    <input placeholder="Opción 2" matInput [(ngModel)]="data.question.answers[1].answerText" />
+  </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Opción 3</mat-label>
+    <input placeholder="Opción 3" matInput [(ngModel)]="data.question.answers[2].answerText" />
+  </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Opción 4</mat-label>
+    <input placeholder="Opción 4" matInput [(ngModel)]="data.question.answers[3].answerText" />
+  </mat-form-field>
+  <!--  <form (ngSubmit)="addOption()" #formName="ngForm">
+    <mat-label>Write an option of answer</mat-label>
+    <input matInput type="text" class="form-control" [(ngModel)]="option" name="option" id="option">
+    <button mat-button type="submit" [disabled]="!formName.form.valid">add</button>
+  </form> -->
 
+
+  <!--
+  <mat-form-field class=" d-block" appearance="outline">
+    <mat-label>Opción 2</mat-label>
+  </mat-form-field> -->
+  <!--
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Respuesta 1</mat-label>
+    <input matInput>
+
+  </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline"></mat-form-field>
+-->
   <mat-button-toggle-group #group="matButtonToggleGroup" [(ngModel)]="data.question.label">
     <mat-button-toggle *ngFor="let opt of labelOptions" [value]="opt">
       <mat-icon [ngClass]="opt">{{
@@ -19,5 +54,6 @@
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>
     {{ data.isNew ? 'Crear' : 'Modificar' }}
   </button>
+
   <calli-delete-button (delete)="handleQuestionDelete()" *ngIf="!data.isNew"></calli-delete-button>
 </div>

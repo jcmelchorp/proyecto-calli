@@ -37,7 +37,7 @@ export class QuizListComponent implements OnInit, OnDestroy {
   openQuizDialog(): void {
     const dialogRef = this.dialog.open(QuizDialogComponent, {
       width: '400px',
-      data: { quiz: {}, dialogAction: 'Crear' }
+      data: { quiz: {}, isNew: true }
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -45,7 +45,25 @@ export class QuizListComponent implements OnInit, OnDestroy {
         console.log(result);
         this.quizService.createQuiz({
           title: result.quiz.title,
-          priority: this.quizList.length
+          description: result.quiz.description,
+          priority: this.quizList.length,
+          questions: [{
+            questionText: 'Escribe la pregunta',
+            label: 'yellow',
+            answers: [{
+              id: 0,
+              answerText: ''
+            }, {
+              id: 1,
+              answerText: ''
+            }, {
+              id: 0,
+              answerText: ''
+            }, {
+              id: 1,
+              answerText: ''
+            }]
+          }]
         });
       }
     });

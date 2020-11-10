@@ -21,7 +21,21 @@ export class QuizComponent {
   }
 
   openDialog(question?: Question, idx?: number): void {
-    const newQuestion = { question: '', label: 'purple' };
+    const newQuestion = {
+      questionText: '', label: 'purple', answers: [{
+        id: 0,
+        answerText: ''
+      }, {
+        id: 1,
+        answerText: ''
+      }, {
+        id: 0,
+        answerText: ''
+      }, {
+        id: 1,
+        answerText: ''
+      }]
+    };
     const dialogRef = this.dialog.open(QuestionDialogComponent, {
       width: '500px',
       data: question
@@ -48,7 +62,7 @@ export class QuizComponent {
   quizEdit(): void {
     const dialogRef = this.dialog.open(QuizDialogComponent, {
       width: '400px',
-      data: { quiz: { ...this.quiz }, dialogAction: 'Modificar' }
+      data: { quiz: { ...this.quiz }, isNew: true }
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
