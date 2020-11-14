@@ -1,10 +1,12 @@
-<div cdkDropList cdkDropListOrientation="vertical" class="p-2 quizes" (cdkDropListDropped)="drop($event)">
+<div cdkDropList cdkDropListOrientation="vertical" class="p-2 quizes" #quizes="cdkDropList" [cdkDropListData]="quizList"
+  (cdkDropListDropped)="drop($event)">
   <div class="quiz-button">
-    <button mat-raised-button color="warn" cdkDragDisabled (click)="openQuizDialog()">
+    <button mat-raised-button color="accent" cdkDragDisabled (click)="openQuizDialog()">
       New Quiz
     </button>
   </div>
-  <calli-quiz class="pt-1" cdkDrag *ngFor="let quiz of quizList" [quiz]="quiz">
+  <calli-quiz class="pt-1" cdkDrag *ngFor="let quiz of quizList; trackBy: trackByFunction" [quiz]="quiz">
     <mat-icon cdkDragHandle class="handle">drag_indicator</mat-icon>
+    <mat-icon mat-button (click)="openQuizDialog(quiz)">edit</mat-icon>
   </calli-quiz>
 </div>

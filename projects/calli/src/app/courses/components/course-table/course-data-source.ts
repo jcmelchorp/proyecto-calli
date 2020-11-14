@@ -8,7 +8,7 @@ import { Observable, merge, of, BehaviorSubject } from 'rxjs';
 import { finalize, map, mergeMap } from 'rxjs/operators';
 
 import { Course } from '../../models/course.model';
-import { GoogleApiService } from '../../../auth/services/former-google-api.service';
+import { GoogleApiService } from '../../../auth/services/google-api.service';
 
 /**
  * Data source for the Table view. This class should

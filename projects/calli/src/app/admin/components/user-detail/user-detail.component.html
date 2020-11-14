@@ -45,7 +45,7 @@
     <!--     <calli-loader-ui [isLoading$]="userCoursesLoading"></calli-loader-ui>
  -->
     <hr>
-    <calli-courses-list *ngIf="!userCoursesLoading && courses" [editable]="false" [courses]="courses"
+    <calli-courses-list *ngIf="!userCoursesLoading && courses" [courses]="courses"
       (courseDeleted)="onCourseDelete($event)">
     </calli-courses-list>
   </mat-card-content>

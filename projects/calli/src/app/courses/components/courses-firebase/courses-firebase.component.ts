@@ -6,18 +6,22 @@ import {
   ChangeDetectionStrategy,
 } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+
 import {
   faGlobeAmericas,
   faPlus,
   faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
+
 import { select, Store } from '@ngrx/store';
+
 import { Subject, Observable, from, empty, Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
+
 import { Course } from '../../models/course.model';
-import { getIsLoading, getCourses } from '../../store/course.selectors';
 import * as courseActions from '../../store/course.actions';
-import { AppState } from '../../../reducers/app.state';
+import { getIsLoading, getCourses } from '../../store/course.selectors';
+import { AppState } from '../../../state/app.state';
 
 @Component({
   selector: 'calli-courses-firebase',
@@ -53,7 +57,7 @@ export class CoursesFirebaseComponent implements OnInit, OnDestroy {
     );
   }
 
-  get user(): Promise<firebase.User> {
+  get user(): Promise<firebase.default.User> {
     return this.afAuth.currentUser;
   }
   ngOnDestroy(): void {

@@ -1,20 +1,22 @@
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>{{course.name}}</mat-card-title>
-    <mat-card-subtitle>{{course.section}}</mat-card-subtitle>
-  </mat-card-header>
-  <!--   <img matCardImage src="Card wide image source">
- -->
-  <mat-card-content>
-    Descripción: {{course.descriptionHeading}}<br>
-    Id: {{course.id}}<br>
-    Id del propietario{{course.ownerId}}<br>
-  </mat-card-content>
-  <mat-card-actions align="end">
+<mat-expansion-panel [class.mat-elevation-z10]="panelOpenState" (opened)="panelOpenState = true"
+  (closed)="panelOpenState = false">
+  <mat-expansion-panel-header>
+    <mat-panel-title>
+      <b>{{course.name}}</b>
+    </mat-panel-title>
+    <mat-panel-description>
+      {{course.id}}
+    </mat-panel-description>
+  </mat-expansion-panel-header>
+  <!-- content -->
+  <p>Id: {{course.id}}</p>
+  <p>Descripción: {{course.descriptionHeading}}</p>
+  <p>Encabezado descripción: {{course.descriptionHeading}}</p>
+  <p>Id del propietario: {{course.ownerId}}</p>
+  <div class=" items-align-right">
+    <button mat-button (click)="onTeachers(course.id)">maestros</button>
+
     <button mat-button (click)="onEdit()">editar</button>
     <button mat-button (click)="onDelete()">delete</button>
-  </mat-card-actions>
-  <mat-card-footer>
-    Footer
-  </mat-card-footer>
-</mat-card>
+  </div>
+</mat-expansion-panel>

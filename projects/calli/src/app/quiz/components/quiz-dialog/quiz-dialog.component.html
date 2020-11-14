@@ -2,17 +2,27 @@
   <h2>{{ data.isNew ? 'Crear' : 'Modificar' }} Cuestionario</h2>
   <mat-icon mat-button [mat-dialog-close]>close</mat-icon>
 </div>
-<p>{{data.quiz.id}}</p>
+
+<p>Realtime DB ID: {{data.quiz.dbId}}</p>
+<p>Firestore ID: {{data.quiz.fsId}}</p>
 <div mat-dialog-content>
   <mat-form-field class="d-block" appearance="outline">
     <mat-label>Título</mat-label>
-    <input placeholder="title" matInput [(ngModel)]="data.quiz.title" />
+    <input type="text" placeholder="title" matInput [(ngModel)]="data.quiz.title" />
   </mat-form-field>
   <mat-form-field class="d-block" appearance="outline">
     <mat-label>Descripción</mat-label>
     <textarea placeholder="Description" matInput [(ngModel)]="data.quiz.description"> </textarea>
   </mat-form-field>
+  <mat-form-field class="d-block" appearance="outline">
+    <mat-label>Priority</mat-label>
+    <input placeholder="priority" matInput [(ngModel)]="data.quiz.priority" />
+  </mat-form-field>
+  <mat-slide-toggle [(ngModel)]="data.quiz.isActive">
+    {{(data.quiz.isActive) ? 'activated' : 'deactivated'}}
+  </mat-slide-toggle>
 </div>
+
 <div mat-dialog-actions>
   <button mat-button (click)="onNoClick()">Cancel</button>
   <button mat-button [mat-dialog-close]="data" cdkFocusInitial>

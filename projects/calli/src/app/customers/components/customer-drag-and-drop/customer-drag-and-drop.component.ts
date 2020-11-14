@@ -14,7 +14,7 @@ import { Customer } from '../../models/customer.model';
 export class CustomerDragAndDropComponent implements OnInit {
   @Input() customers: Customer[];
   @Input() isLoading$: Observable<boolean>;
-  assignedTasks = [];
+  assignedTasks: Customer[] = [];
   unassignedTasks: Customer[] = [];
   constructor() { }
 
@@ -32,6 +32,7 @@ export class CustomerDragAndDropComponent implements OnInit {
 
   drop(event: CdkDragDrop<Customer[]>): void {
     if (event.previousContainer === event.container) {
+      console.log(event.container.data);
       moveItemInArray(
         event.container.data,
         event.previousIndex,

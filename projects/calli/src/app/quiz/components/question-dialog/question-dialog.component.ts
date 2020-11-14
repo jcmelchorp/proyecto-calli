@@ -21,11 +21,7 @@ export class QuestionDialogComponent {
     this.dialogRef.close();
   }
 
-  addOption() {
-    this.data.question.answers.push(this.option);
-    console.log(this.data.question.answers);
-    this.option = '';
-  }
+
   handleQuestionDelete(): void {
     this.quizService.removeQuestion(this.data.quizId, this.data.question);
     this.dialogRef.close();

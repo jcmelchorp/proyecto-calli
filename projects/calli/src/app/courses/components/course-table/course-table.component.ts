@@ -23,7 +23,7 @@ import {
 import { from, merge, Observable, of, Subject, Subscription } from 'rxjs';
 
 import { Course } from './../../models/course.model';
-import { GoogleApiService } from '../../../auth/services/former-google-api.service';
+import { GoogleApiService } from '../../../auth/services/google-api.service';
 
 import { CourseDataSource } from './course-data-source';
 

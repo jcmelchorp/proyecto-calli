@@ -18,6 +18,7 @@ import {
 } from '../../store/admin.selectors';
 import { AppState } from '../../../state/app.state';
 import { User } from '../../../auth/models/user.model';
+import { GoogleApiService } from './../../../auth/services/google-api.service';
 import { Course } from '../../../courses/models/course.model';
 import { Customer } from '../../../customers/models/customer.model';
 import { ConfirmModalComponent } from '../../../shared/components/confirm-modal/confirm-modal.component';
@@ -33,7 +34,8 @@ export class AdminComponent implements OnInit {
   modalService: any;
   constructor(
     private store: Store<AppState>,
-    public dialogService: MatDialog
+    public dialogService: MatDialog,
+    public googleServices: GoogleApiService
   ) { }
 
   users$: Observable<any>;
@@ -87,7 +89,7 @@ export class AdminComponent implements OnInit {
   }
 
   onCoursesLoad(): void {
-    this.store.dispatch(new fromAdmin.GetUserCourses({ uid: this.uid }));
+    //this.googleServices.courseList;
   }
 
   onCustomersLoad(): void {

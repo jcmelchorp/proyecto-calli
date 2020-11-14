@@ -18,6 +18,41 @@ export interface Course {
   teacherFolder: DriveFolder;
   courseMaterialSets: CourseMaterialSet[];
 }
+export interface Teachers {
+  courseId: string;
+  userId: string;
+  profile: UserProfile;
+}
+export interface Students {
+  courseId: string;
+  userId: string;
+  profile: UserProfile;
+  studentWorkFolder: DriveFolder;
+
+}
+
+export interface UserProfile {
+  id: string;
+  name: Name;
+  emailAddress: string;
+  photoUrl: string;
+  permissions: GlobalPermissions;
+  verifiedTeacher: boolean;
+}
+export interface GlobalPermissions {
+  permission: Permission;
+}
+
+export enum Permission {
+  PERMISSION_UNSPECIFIED, CREATE_COURSE
+}
+
+export interface Name {
+  givenName: string;
+  familyName: string;
+  fullName: string;
+}
+
 export enum CourseState {
   COURSE_STATE_UNSPECIFIED,
   ACTIVE,

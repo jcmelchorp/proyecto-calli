@@ -1,8 +1,8 @@
 <!-- <calli-loader-ui> </calli-loader-ui>
  -->
 <mat-card>
-  <div [class.mat-elevation-z4]="false" *ngIf="!dataSource.loading$ | async">
-    <table mat-table class="small-table" [dataSource]="dataSource" matSort aria-label="Google Classroom courses"
+  <div [class.mat-elevation-z4]="false" *ngIf="!courses | async">
+    <table mat-table class="small-table" [dataSource]="courses" matSort aria-label="Google Classroom courses"
       multiTemplateDataRows>
       <!-- Id Column -->
       <ng-container matColumnDef="name">

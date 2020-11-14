@@ -39,6 +39,8 @@ const routes: Routes = [{
         import('./customers/customers.module').then((m) => m.CustomersModule),
       canActivate: [AuthGuard]
     },
+    { path: 'courses', loadChildren: () => import('./courses/courses.module').then(m => m.CoursesModule) },
+
     { path: 'quizes', loadChildren: () => import('./quiz/quiz.module').then(m => m.QuizModule) },
 /*     { path: 'questionaries', loadChildren: () => import('./questionary/questionary.module').then(m => m.QuestionaryModule) }
  */  ],

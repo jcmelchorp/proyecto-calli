@@ -2,6 +2,7 @@
   <h2>{{ data.isNew ? 'Crear' : 'Modificar' }} Pregunta</h2>
   <mat-icon mat-button (click)="onNoClick()" [mat-dialog-close]>close</mat-icon>
 </div>
+<P>{{data.idx}}</P>
 <div mat-dialog-content>
   <mat-form-field class="d-block" appearance="outline">
     <mat-label>Pregunta</mat-label>

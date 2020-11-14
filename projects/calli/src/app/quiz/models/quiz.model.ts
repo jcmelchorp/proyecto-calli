@@ -1,14 +1,18 @@
 export class Quiz {
-  id?: string;
+  id?: number;
+  priority?: number;
+  dbId?: string;
+  fsId?: string;
   title?: string;
   isActive?: boolean;
   description?: string;
-  priority?: number;
   areaTag?: SubjectTags[];
   questions?: Question[];
+
 }
 
 export class Question {
+  questionId?: number;
   questionText?: string;
   correctIndex?: number;
   questionMediaUrl?: string;
@@ -18,10 +22,10 @@ export class Question {
   label?: 'purple' | 'blue' | 'green' | 'yellow' | 'red' | 'gray';
 
 }
-
-export interface Answer {
+export class Answer {
   id: number;
   answerText?: string;
+
 }
 
 export interface SubjectTags {

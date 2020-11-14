@@ -1,9 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { Subject } from 'rxjs';
-import { Course } from '../../../courses/models/course.model';
-import { NgForm } from '@angular/forms';
-import { MatDialog } from '@angular/material/dialog';
+import { Component, Inject, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, NgForm, FormGroup, Validators, FormControl } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+
 import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
+
+import { Subject } from 'rxjs';
+
+import { Course } from '../../../courses/models/course.model';
 
 @Component({
   selector: 'calli-course-modal',
@@ -11,33 +14,37 @@ import { faWindowClose } from '@fortawesome/free-regular-svg-icons';
   styleUrls: ['./course-modal.component.scss']
 })
 export class CourseModalComponent implements OnInit {
-  @ViewChild('courseForm', { static: true }) courseForm: NgForm;
-  close = faWindowClose;
-  heading: string;
-
-  title: string;
-  description: string;
-  photoUrl: string;
-
-  courseData: Subject<Course> = new Subject();
-  course: Course;
-
+  courseForm: FormGroup;
   constructor(
-    public dialogService: MatDialog,
+    private fb: FormBuilder,
+    public dialogRef: MatDialogRef<CourseModalComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: any
   ) {
 
   }
   ngOnInit() {
+    this.courseForm = this.fb.group({
+      name: new FormControl(this.data.name, [Validators.required]),
+      description: new FormControl(this.data.description, [Validators.required]),
+      descriptionHeading: new FormControl(this.data.descriptionHeading, [Validators.required]),
+      section: new FormControl(this.data.section, [Validators.required]),
+      courseState: new FormControl(this.data.courseState, [Validators.required]),
+      guardiansEnabled: new FormControl(this.data.guardiansEnabled, [Validators.required]),
+      ownerId: new FormControl(this.data.ownerId, [Validators.required])
+    });
   }
 
-  onSave() {
+  onSubmit() {
     if (this.courseForm.valid) {
-      this.courseData.next(this.course);
-      this.dialogService.closeAll();
+      //this.courseData.next(this.course);
+
     } else {
       const controls = this.courseForm.controls;
       Object.keys(controls).forEach(controlName => controls[controlName].markAsTouched());
     }
+  }
+  onNoClick(): void {
+    this.dialogRef.close();
   }
 
 }

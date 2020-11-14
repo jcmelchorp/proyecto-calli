@@ -1,3 +1,4 @@
+import { AngularFireDatabase } from '@angular/fire/database';
 import { Title } from '@angular/platform-browser';
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
@@ -5,7 +6,7 @@ import { AngularFirestore, AngularFirestoreDocument, DocumentReference } from '@
 
 import * as firebase from 'firebase/app';
 
-import { Observable } from 'rxjs';
+import { from, Observable, of } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 
 import { Question, Quiz } from '../models/quiz.model';
@@ -14,50 +15,72 @@ import { Question, Quiz } from '../models/quiz.model';
   providedIn: 'root'
 })
 export class QuizService {
-  constructor(private afAuth: AngularFireAuth, private db: AngularFirestore) { }
-
-  /**
-   * Creates a new quiz for the current user
-   */
-  async createQuiz(data: Quiz): Promise<DocumentReference> {
-    const user = await this.afAuth.currentUser;
-    return this.db.collection('quizes').add({
-      ...data,
-      uid: user.uid
+  private userId: string;
+  private userTkn: string;
+  constructor(
+    private afAuth: AngularFireAuth,
+    private afs: AngularFirestore,
+    private db: AngularFireDatabase
+  ) {
+    this.afAuth.authState.subscribe((user) => {
+      if (user) {
+        this.userId = user.uid;
+        this.userTkn = user.refreshToken;
+      }
     });
-  }
-
-  async updateQuizInfo(data: Quiz) {
-    const userRef: AngularFirestoreDocument = this.db.doc(`quizes/${data.id}`);
-    const dbData = {
-      id: data.id,
-      title: data.title,
-      description: data.description,
-      priority: data.priority,
-      questions: data.questions,
-      //areaTag: data.areaTag
-    };
-    return userRef.set(dbData, { merge: true });
   }
   /**
    * Get all quizs owned by current user
    */
-  getUserQuizes(): Observable<any> {
-    return this.afAuth.authState.pipe(
-      switchMap(user => {
-        if (user) {
-          return this.db
-            .collection<Quiz>('quizes', ref =>
-              ref.where('uid', '==', user.uid).orderBy('priority')
-            )
-            .valueChanges({ idField: 'id' });
-        } else {
-          return [];
-        }
-      }),
-      // map(quizs => quizs.sort((a, b) => a.priority - b.priority))
-    );
+  getUserQuizes(userId: string) {
+    return this.afs
+      .collection<Quiz>('quizes', (ref) =>
+        ref.where('fsId', '==', userId).orderBy('priority')).valueChanges({ idField: 'fsId' });
   }
+
+  get(userId: string) {
+    return this.db.list(`quizes/${userId}`).snapshotChanges();
+    // return this.db.list<Quiz>(`quizes/${userId}/`, ref => ref.orderByChild('priority')).snapshotChanges();
+  }
+
+  /**
+   * Creates a new quiz for the current user
+   */
+  createQuiz(data: Quiz, userId: string): Promise<void> {
+    //const dbKey = this.db.createPushId();
+    const fsKey = this.afs.createId();
+    this.db.list(`quizes/${userId}`).push({ ...data, fsId: fsKey });
+    return this.afs.collection('quizes').doc(fsKey).set({
+      ...data,
+      uid: userId,
+      fsId: fsKey
+    });
+  }
+  /**
+   * Update a partial Quiz Info for the current User
+   */
+  update(quiz: Quiz, userId: string) {
+    return of(
+      this.db.object(`quizes/${userId}/` + quiz.dbId).update({
+        title: quiz.title,
+        isActive: quiz.isActive,
+        description: quiz.description,
+        priority: quiz.priority,
+      }).then(() => this.updateQuizInfo(quiz)));
+  }
+
+  updateQuizInfo(data: Quiz) {
+    this.afs.collection('quizes').doc(data.fsId).update({
+      title: data.title,
+      isActive: data.isActive,
+      description: data.description,
+      priority: data.priority,
+    });
+
+  }
+
+  // map(quizs => quizs.sort((a, b) => a.priority - b.priority))
+
 
   /**
    * Run a batch write to change the priority of each quiz for sorting
@@ -65,7 +88,7 @@ export class QuizService {
   sortQuizes(quizes: Quiz[]): void {
     const db = firebase.default.firestore();
     const batch = db.batch();
-    const refs = quizes.map(b => db.collection('quizes').doc(b.id));
+    const refs = quizes.map(b => db.collection('quizes').doc(b.fsId));
     refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));
     batch.commit();
   }
@@ -73,10 +96,11 @@ export class QuizService {
   /**
    * Delete quiz
    */
-  deleteQuiz(quizId: string): Promise<void> {
-    return this.db
+  deleteQuiz(quiz: Quiz, userId: string): Promise<void> {
+    this.db.object(`quizes/${userId}/${quiz.dbId}`).remove();
+    return this.afs
       .collection('quizes')
-      .doc(quizId)
+      .doc(quiz.fsId)
       .delete();
   }
 
@@ -84,7 +108,7 @@ export class QuizService {
    * Updates the tasks on quiz
    */
   updateQuestions(quizId: string, questions: Question[]): Promise<void> {
-    return this.db
+    return this.afs
       .collection('quizes')
       .doc(quizId)
       .update({ questions });
@@ -94,7 +118,7 @@ export class QuizService {
    * Remove a specifc task from the quiz
    */
   removeQuestion(quizId: string, question: Question): Promise<void> {
-    return this.db
+    return this.afs
       .collection('quizes')
       .doc(quizId)
       .update({

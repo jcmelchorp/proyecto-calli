@@ -56,7 +56,7 @@ export class AuthService {
   }
 
   saveUser(user: User): Promise<void> {
-    const users = this.db.object('users/' + user.uid);
+    const users = this.db.object(`users/${user.uid}`);
     return users.set(user);
   }
 

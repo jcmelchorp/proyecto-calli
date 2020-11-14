@@ -1,4 +1,3 @@
-import { TableComponent } from './components/table/table.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -22,8 +21,8 @@ import { CourseEffect } from './store/course.effects';
 import * as fromCourse from './store/course.reducer';
 import { CourseTableComponent } from './components/course-table/course-table.component';
 import { CoursesFirebaseComponent } from './components/courses-firebase/courses-firebase.component';
-import { CoursesGoogleApiComponent } from './components/courses-google-api/courses-google-api.component';
 import { CoursesComponent } from './components/courses/courses.component';
+import { TableComponent } from './components/table/table.component';
 import { CoursesShellComponent } from './containers/courses-shell/courses-shell.component';
 
 @NgModule({
@@ -31,7 +30,6 @@ import { CoursesShellComponent } from './containers/courses-shell/courses-shell.
     CoursesFirebaseComponent,
     CourseTableComponent,
     CoursesShellComponent,
-    CoursesGoogleApiComponent,
     CoursesComponent,
     TableComponent
   ],

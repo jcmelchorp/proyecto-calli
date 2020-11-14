@@ -1,26 +1,59 @@
+<div class="breadcrumb">
+  <div fxLayout="column" fxLayoutAlign="left">
+    <p class="display-4">Clases</p>
+    <p class="mat-h1 text-black-50">
+    </p>
+  </div>
+</div>
 <mat-tab-group>
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-      First
+      <mat-icon class="example-tab-icon">wysiwyg</mat-icon>
+      &nbsp; Materias
     </ng-template>
-    Content 1
+
+
+    <!--
+ -->
+    <div class="p-3">
+      <div *ngIf="!this.googleApiService.courses$" fxLayout="column" fxLayoutAlign="center center">
+        <mat-progress-spinner mode="indeterminate">
+        </mat-progress-spinner>
+        <span>Buscando cursos...</span>
+        <button mat-raised-button color="primary" (click)="this.googleApiService.listCourses()">Reintentar</button>
+      </div>
+
+      <calli-courses-list [courses]="this.googleApiService.courses$" [editable] (courseDeleted)="onCourseDelete($event)"
+        (courseEdited)="onCourseEdit($event)">
+        <button mat-raised-button color="primary" (click)="getTeachers()">Reintentar</button>
+      </calli-courses-list>
+    </div>
+
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-      Second
+      <mat-icon class="example-tab-icon">
+        account_circle</mat-icon>
+      &nbsp; Alumnos
     </ng-template>
     Content 2
   </mat-tab>
 
   <mat-tab>
     <ng-template mat-tab-label>
-      <mat-icon class="example-tab-icon">thumb_up</mat-icon>
-      Third
+      <mat-icon class="example-tab-icon">assignment_ind</mat-icon>
+      &nbsp; Profesores
     </ng-template>
+    <div *ngIf="!this.googleApiService.teachers$" fxLayout="column" fxLayoutAlign="center center">
+      <mat-progress-spinner mode="indeterminate">
+      </mat-progress-spinner>
+      <span>Buscando cursos...</span>
+      <button mat-raised-button color="primary" (click)="getTeachers()">Reintentar</button>
+    </div>
 
-    Content 3
+    <div *ngIf="this.googleApiService.teachers$">
+
+    </div>
   </mat-tab>
 </mat-tab-group>

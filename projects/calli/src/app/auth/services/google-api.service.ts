@@ -15,7 +15,9 @@ declare var gapi;
 export class GoogleApiService {
   user$: Observable<firebase.default.User>;
   courses$: Observable<Course[]>;
-  calendarItems: any[];
+  teachers$: Observable<any[]>;
+  courseList: Course[];
+
   constructor(public afAuth: AngularFireAuth) {
     this.initClient();
     /* this.afAuth.authState.subscribe((user) => {
@@ -54,14 +56,28 @@ export class GoogleApiService {
    * Print the names of the first 10 courses the user has access to. If
    * no courses are found an appropriate message is printed.
    */
-  listCourses() {
-    this.courses$ = gapi.client.classroom.courses.list().then(response => {
-      return from<Course[]>(response.result.courses);
-    });
+  async listCourses2() {
+    return await gapi.client.classroom.courses.list().then(response => {
+      this.courses$ = response.result.courses;
+    })
   }
-  async listTeachers(courseId: number) {
-    return await gapi.client.classroom.teachers.list({ courseId });
+  async listTeachers(cid: string) {
+    return await gapi.client.classroom.courses.teachers.list({ courseId: cid }).then(response =>
+      this.teachers$ = response.result.teachers
+    );
   }
+
+  async listCourses(): Promise<Course[]> {
+    const response = await gapi.client.classroom.courses.list();
+    const result = response.result;
+    this.courses$ = result.courses;
+    return result.courses;
+    /* response.result.courses.map(c => {
+      let ownerName = gapi.client.classroom.courses.teachers.get({ courseId: c.id, userId: c.ownerId }).profile.name.fullName;
+      console.log(ownerName)
+    }); */
+  }
+
 
 
   /* async listCourses() {

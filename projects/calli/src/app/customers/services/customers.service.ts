@@ -107,11 +107,11 @@ export class CustomersService {
   /**
    * Run a batch write to change the priority of each board for sorting
    */
-  sortBoards(boards: Customer[]): void {
+  sortBoards(customers: Customer[]): void {
     /** Firestore  */
     const db = firebase.default.firestore();
     const batch = db.batch();
-    const refs = boards.map(b => db.collection('boards').doc(b.key));
+    const refs = customers.map(b => db.collection('customers').doc(b.key));
     refs.forEach((ref, idx) => batch.update(ref, { priority: idx }));
     batch.commit();
   }

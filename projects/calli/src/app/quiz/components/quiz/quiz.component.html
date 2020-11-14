@@ -3,18 +3,22 @@
     <mat-expansion-panel-header>
       <mat-panel-title>
         <ng-content></ng-content>
-        <mat-icon mat-button (click)="quizEdit()">edit</mat-icon>
         <p> {{ quiz.title }} </p>
       </mat-panel-title>
       <mat-panel-description>
-        <p>Firestore ID: {{ quiz.id }}</p>
+
+        <p>id: {{ quiz.id }}</p>
+        <p>priority: {{quiz.priority}} </p>
       </mat-panel-description>
     </mat-expansion-panel-header>
     <!-- content -->
+    <p>firestore ID: {{ quiz.fsId }}</p>
+    <p>real-time Database ID: {{quiz.key}} </p>
     <p> {{ quiz.description }} </p>
     <div class="questions" cdkDropList cdkDropListOrientation="vertical" (cdkDropListDropped)="questionDrop($event)">
       <div class="inner-card" cdkDrag *ngFor="let question of quiz.questions; let i = index"
         (click)="openDialog(question, i)">
+        <p>{{i}}</p>
         <mat-card [ngClass]="question.label"> {{ question.questionText }} </mat-card>
       </div>
 
